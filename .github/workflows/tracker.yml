@@ -1,0 +1,55 @@
+name: 美股 RS 每日計算
+
+on:
+  schedule:
+    # 22:30 UTC = 台北 06:30（週二～週六），美股收盤後約 1.5 小時（夏令時間 2.5 小時）
+    - cron: "30 22 * * 1-5"
+  push:
+    paths: ["run.txt"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tracker
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests pandas openpyxl yfinance
+
+      - name: 下載行情（第一次會用 EODHD 回補歷史）
+        run: |
+          mkdir -p logs
+          set -o pipefail
+          python fetch_us.py 2>&1 | tee logs/fetch.log
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+
+      - name: 計算 RS 與大盤廣度
+        run: |
+          set -o pipefail
+          python rs_us.py 2>&1 | tee logs/rs.log
+
+      - name: 存檔到 repo
+        if: always()
+        run: |
+          git config user.name "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+          git add -A data/ logs/ || true
+          git add RS_美股.xlsx 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "US RS $(date -u +%F)"
+          for i in 1 2 3; do
+            git push && break
+            git pull --rebase -X theirs origin main || { git rebase --abort; exit 1; }
+          done

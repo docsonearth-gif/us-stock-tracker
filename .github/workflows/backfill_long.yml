@@ -1,0 +1,44 @@
+name: EODHD 長歷史回補（回測用）
+
+on:
+  push:
+    paths: ["run_long.txt"]
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "起始日"
+        default: "2014-01-01"
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests pandas
+
+      - name: 下載長歷史（含已下市股票）
+        run: python backfill_eodhd.py 2>&1 | tee backfill_long.log
+        env:
+          MODE: long
+          LONG_START: ${{ github.event.inputs.start || '2014-01-01' }}
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+
+      - name: 打包並上傳成 Release 附件
+        run: |
+          cp backfill_long.log history/
+          tag="history-$(date -u +%Y%m%d-%H%M)"
+          tar -cf us_history_long.tar history
+          ls -lh us_history_long.tar
+          gh release create "$tag" us_history_long.tar --title "美股長歷史 $(date -u +%F)" \
+            --notes "$(cat history/README.txt)"
+        env:
+          GH_TOKEN: ${{ github.token }}
