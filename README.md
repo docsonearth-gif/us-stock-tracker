@@ -6,8 +6,11 @@
 - **大盤廣度**（52 週新高／新低、出貨日、市場狀態）與**市場寬度**（站上 20／50／200 日線比例，全部／NYSE／Nasdaq）
 - 大盤修正時的 **Utility Screen**（基準 S&P 500）
 - **VCP 先決條件**、**52 週新高**名單
+- **Market Monitor**（仿 Stockbee：4% 突破家數、5／10 日比、T2108、季漲跌 25%）
+- **產業強度**（Nasdaq 產業別）與**自訂主題板塊**（主題 ETF 成分股＋手動補充）的強度排名與板塊 RSI 熱圖
+- **ETF 強度與 RSI 熱圖**：大盤、11 個類股、產業、主題 ETF（台股官方類股 RSI 的美股版）
 
-已排除：ETF、權證、單位、特別股、SPAC、OTC。
+已排除：ETF、權證、權利、單位、特別股、SPAC、OTC、發行前交易。
 
 ---
 
@@ -15,7 +18,7 @@
 
 | 台北時間 | 內容 |
 |---|---|
-| **週二～週六 06:30** | 前一個美股交易日的行情、RS、大盤廣度、`RS_美股.xlsx` |
+| **週二～週六 06:30** | 前一個美股交易日的行情、RS、大盤廣度、Market Monitor、ETF、板塊（分類每週更新一次） |
 
 GitHub 排程常延遲。想馬上跑：**Actions → 美股 RS 每日計算 → Run workflow**（或改 `run.txt` 推上來）。
 
@@ -25,15 +28,20 @@ GitHub 排程常延遲。想馬上跑：**Actions → 美股 RS 每日計算 →
 
 ## 資料來源
 
-| 期間 | 來源 | 說明 |
+| 用途 | 來源 | 說明 |
 |---|---|---|
-| 訂閱 EODHD 的那個月 | EODHD | 第一次執行自動回補約兩年；每天和 Yahoo 對帳（`data/compare.csv`）；Yahoo 資料不完整時自動改用 EODHD |
-| 之後 | yfinance（Yahoo） | 股票清單改用 Nasdaq 官方上市清單（免費） |
-| 回測 | EODHD 長歷史 | 2014 年起＋已下市股票，存在 **Releases** 附件（`us_history_long.tar`），不放在 repo 裡 |
+| 每日行情 | EODHD Bulk API | 一次呼叫抓整個美國市場某一天（約 100 次額度）；漏跑的日子下次自動補 |
+| 第一次回補 | EODHD 單檔日線 | 約兩年；成交量不可靠，已用 Bulk API 重抓（`repair_volume.py`） |
+| 回測 | EODHD 長歷史 | 2014 年起＋8,180 檔已下市股票，存在 **Releases** 附件（`us_history_long.tar`）；成交量同樣不可靠，回測以價格為主 |
+| 產業別 | Nasdaq 股票篩選器 | 每週更新 |
+| 主題板塊 | 主題 ETF 發行商的持股檔（SPDR、Global X、ARK、iShares、First Trust） | 每週更新；抓不到的主題沿用上一版 |
+| ETF | EODHD 單檔日線 | 每天重抓約兩年 |
 
-**還原股價**：每日檔存當天「含分割、含配息」的報酬率（`ret`），計算時連乘回去。之後再分割或配息，舊資料都不用改，Yahoo 和 EODHD 也能直接接在一起。
+**還原股價**：每日檔存當天「含分割、含配息」的報酬率（`ret`），計算時連乘回去。之後再分割或配息，舊資料都不用改。
+Bulk API 的報酬率＝(收盤＋除息股利) ÷ (前一日收盤 ÷ 分割比例) − 1；有分割或漲跌超過 ±35% 的股票（反分割常不在分割清單裡），改用該檔的還原價重算。
+已驗證：2026-11-10 用 Bulk 重算 5,606 檔，收盤 0 檔不一致、報酬率差超過 0.5 個百分點只有 1 檔。
 
-**取消 EODHD 前要確認**：`data/compare.csv` 最近幾天「收盤差>0.5%檔數」「報酬率差>0.5點檔數」都很少（個位數），「成交量比中位數」接近 1。
+備用：`SOURCE=yahoo` 可改用 yfinance（不用 EODHD 時）。
 
 ---
 
@@ -50,11 +58,37 @@ GitHub 排程常延遲。想馬上跑：**Actions → 美股 RS 每日計算 →
 | VCP先決條件 | 同 TradingView `trend_template.pine`（不看 150MA） |
 | 全部股票 | 每檔普通股的 RS、短期 RS、第②階段、距高點、距 50 日線、RSI14、成交額 |
 
-板塊（自訂主題、產業）之後加入。
+| 自訂板塊強度 | 主題板塊依 RS 中位數排名：RS 1 月中位數、排名 5／20 日進步、板塊 RSI、第②階段比例、近 10 日創高比例、龍頭候選 |
+| 產業強度 | Nasdaq 產業別，算法同上 |
+
+### `Market_Monitor_美股.xlsx`
+
+同台股版（說明工作表有每欄定義與顏色意義）。門檻在 `mm_config.py`：股價 ≥ 5 美元、4% 突破要成交量 ≥ 10 萬股且大於前一天、大漲大跌日門檻 300 家（Stockbee 原版）。
+
+### `ETF強度_美股.xlsx`
+
+| 工作表 | 內容 |
+|---|---|
+| ETF強度 | 群組、RSI14 與 5 日變化、1 週／1／3／6 月報酬、3 月相對 SPY、RS（ETF 之間互比）、距 52 週高點、距 50／200 日線、多頭排列 |
+| RSI熱圖 | 同台股熱圖格式：上方 1／5／20 日 RSI 變化，下方近 60 天逐日 RSI |
+
+清單在 `etfs_us.csv`，要加減 ETF 直接改。
+
+### `板塊RSI_熱圖_美股.xlsx`
+
+主題板塊（成分股 14 日 RSI 中位數）的熱圖，格式同台股。
+
+### 板塊分類檔
+
+| 檔案 | 內容 | 誰維護 |
+|---|---|---|
+| `themes_us.csv` | 主題名稱 ↔ 來源 ETF | 手動（想加主題就加一行） |
+| `sectors_us.csv` | 主題成分股（自動產生） | `classify_us.py` 每週 |
+| `sectors_us_補充.csv` | ETF 沒涵蓋的主題（量子、光通訊、記憶體、AI 電力、加密貨幣概念、無人機…） | 手動 |
 
 ### 背景資料（`data/`）
 
-`daily/`（每日行情，約 560 個交易日）、`stocks.csv`（股票清單）、`index.csv`（S&P 500、Nasdaq）、`market_breadth.csv`、`compare.csv`（Yahoo vs EODHD 對帳）
+`daily/`（每日行情，約 560 個交易日）、`stocks.csv`（股票清單＋產業別）、`index.csv`（S&P 500、Nasdaq）、`market_breadth.csv`、`market_monitor.csv`、`sector_history.csv`、`etf_close.csv`
 
 ---
 
@@ -76,7 +110,12 @@ GitHub 排程常延遲。想馬上跑：**Actions → 美股 RS 每日計算 →
 
 | 檔案 | 做什麼 |
 |---|---|
-| `fetch_us.py` | 每日下載（yfinance）、補缺日、EODHD 備援與對帳 |
+| `fetch_us.py` | 每日下載（EODHD Bulk）、補缺日、分割重算；`VERIFY_DATE` 驗證模式 |
+| `classify_us.py` | 產業別、主題 ETF 成分股（每週） |
+| `mm_us.py`／`mm_config.py` | Market Monitor |
+| `etf_us.py` | ETF 強度與 RSI 熱圖 |
+| `heatmap.py` | 自訂板塊 RSI 熱圖 |
+| `repair_volume.py` | 一次性：用 Bulk API 重抓歷史成交量 |
 | `backfill_eodhd.py` | EODHD 回補：`working`（兩年，每日用）／`long`（2014 起＋下市股，回測用） |
 | `rs_us.py` | RS、廣度、Utility Screen、Excel |
 | `common.py` | 共用工具 |

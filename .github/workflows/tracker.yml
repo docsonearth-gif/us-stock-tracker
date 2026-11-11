@@ -15,6 +15,9 @@ concurrency:
   group: tracker
   cancel-in-progress: false
 
+env:
+  PYTHONUNBUFFERED: "1"
+
 jobs:
   run:
     runs-on: ubuntu-latest

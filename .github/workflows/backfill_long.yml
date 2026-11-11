@@ -12,6 +12,9 @@ on:
 permissions:
   contents: write
 
+env:
+  PYTHONUNBUFFERED: "1"
+
 jobs:
   run:
     runs-on: ubuntu-latest
