@@ -94,6 +94,8 @@ def fmt(v, nd=4):
             return ""
     except TypeError:
         return ""
+    if nd == 0:
+        return str(int(round(float(v))))          # 整數（成交量）：不能去掉尾端的 0
     return f"{float(v):.{nd}f}".rstrip("0").rstrip(".")
 
 

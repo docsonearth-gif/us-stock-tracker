@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests pandas
+      - run: pip install requests pandas openpyxl
       - name: 用 Bulk API 重抓成交量
         run: |
           mkdir -p logs
@@ -32,11 +32,18 @@ jobs:
           python repair_volume.py 2>&1 | tee logs/repair.log
         env:
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+      - name: 重算 RS、板塊熱圖、Market Monitor
+        run: |
+          set -o pipefail
+          python rs_us.py 2>&1 | tee logs/rs.log
+          python heatmap.py 2>&1 | tee -a logs/rs.log
+          python mm_us.py 2>&1 | tee logs/mm.log
       - name: 存檔
         if: always()
         run: |
           git config user.name "tracker-bot"
           git config user.email "tracker-bot@users.noreply.github.com"
           git add -A data/ logs/
+          git add RS_美股.xlsx Market_Monitor_美股.xlsx 板塊RSI_熱圖_美股.xlsx 2>/dev/null || true
           git diff --cached --quiet || git commit -m "修正歷史成交量 $(date -u +%F)"
           for i in 1 2 3; do git push && break; git pull --rebase -X theirs origin main || { git rebase --abort; exit 1; }; done
