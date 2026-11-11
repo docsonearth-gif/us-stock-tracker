@@ -1,0 +1,14 @@
+要修正 550 天（已完成 0 天）
+Traceback (most recent call last):
+  File "/home/runner/work/us-stock-tracker/us-stock-tracker/repair_volume.py", line 63, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/us-stock-tracker/us-stock-tracker/repair_volume.py", line 52, in main
+    save_day(d, list(rows.values()))
+  File "/home/runner/work/us-stock-tracker/us-stock-tracker/common.py", line 108, in save_day
+    fmt(r.get("close")), fmt(r.get("volume"), 0), fmt(r.get("ret"), 6),
+                                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/us-stock-tracker/us-stock-tracker/common.py", line 97, in fmt
+    return f"{float(v):.{nd}f}".rstrip("0").rstrip(".")
+              ^^^^^^^^
+ValueError: could not convert string to float: ''
