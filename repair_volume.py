@@ -1,8 +1,8 @@
 """
 用 EODHD Bulk API 重抓每日檔的成交量與開高低（一次性修正）
 
-原因：回補時用的單檔日線 API，美股成交量不可靠（例如 JPM 某天只有 793 股），
-但收盤價與報酬率都正確（已驗證）。Bulk API 是之後每天抓資料用的來源，成交量正確。
+原因：存檔時整數尾端的 0 被刪掉（49,613,500 存成 496,135；common.fmt 的錯誤，已修正）。
+收盤價與報酬率有小數點，不受影響（已驗證）。
 這支程式只換 open／high／low／volume，close 與 ret 不動；做完的日期記在 data/volume_repaired.txt，
 中斷後重跑會接著做。
 """
@@ -32,6 +32,9 @@ def main():
         t1 = time.time()
         try:
             bars = bulk_bars(d)
+        except PermissionError as e:
+            print(f"  {d} 失敗：{e}\nEODHD 額度用完，先停；UTC 00:00 歸零後重跑會接著做")
+            break
         except Exception as e:
             print(f"  {d} 失敗：{e}")
             time.sleep(30)

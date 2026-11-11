@@ -31,8 +31,8 @@ GitHub 排程常延遲。想馬上跑：**Actions → 美股 RS 每日計算 →
 | 用途 | 來源 | 說明 |
 |---|---|---|
 | 每日行情 | EODHD Bulk API | 一次呼叫抓整個美國市場某一天（約 100 次額度）；漏跑的日子下次自動補 |
-| 第一次回補 | EODHD 單檔日線 | 約兩年；成交量不可靠，已用 Bulk API 重抓（`repair_volume.py`） |
-| 回測 | EODHD 長歷史 | 2014 年起＋8,180 檔已下市股票，存在 **Releases** 附件（`us_history_long.tar`）；成交量同樣不可靠，回測以價格為主 |
+| 第一次回補 | EODHD 單檔日線 | 約兩年（成交量曾因存檔格式錯誤被截掉尾端的 0，已用 Bulk API 重抓修正） |
+| 回測 | EODHD 長歷史 | 2014 年起＋8,180 檔已下市股票，存在 **Releases** 附件（`us_history_long.tar`），價格與成交量都正確 |
 | 產業別 | Nasdaq 股票篩選器 | 每週更新 |
 | 主題板塊 | 主題 ETF 發行商的持股檔（SPDR、Global X、ARK、iShares、First Trust） | 每週更新；抓不到的主題沿用上一版 |
 | ETF | EODHD 單檔日線 | 每天重抓約兩年 |
@@ -115,7 +115,11 @@ Bulk API 的報酬率＝(收盤＋除息股利) ÷ (前一日收盤 ÷ 分割比
 | `mm_us.py`／`mm_config.py` | Market Monitor |
 | `etf_us.py` | ETF 強度與 RSI 熱圖 |
 | `heatmap.py` | 自訂板塊 RSI 熱圖 |
-| `repair_volume.py` | 一次性：用 Bulk API 重抓歷史成交量 |
+| `repair_volume.py` | 一次性：用 Bulk API 重抓歷史成交量（修正存檔錯誤） |
 | `backfill_eodhd.py` | EODHD 回補：`working`（兩年，每日用）／`long`（2014 起＋下市股，回測用） |
 | `rs_us.py` | RS、廣度、Utility Screen、Excel |
 | `common.py` | 共用工具 |
+
+## EODHD 額度
+
+每天 100,000 次（UTC 00:00 歸零＝台北 08:00）。Bulk API 一次算 100 次。每日流程約用 400 次（行情、分割、股利三個 Bulk＋61 檔 ETF＋少數重算），很充裕；大量回補、修正才要注意。
