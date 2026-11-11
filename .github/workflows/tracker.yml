@@ -26,9 +26,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install requests pandas openpyxl yfinance
+      - run: pip install requests pandas openpyxl lxml yfinance
 
-      - name: 下載行情（第一次會用 EODHD 回補歷史）
+      - name: 下載行情（EODHD Bulk；第一次會回補歷史）
         run: |
           mkdir -p logs
           set -o pipefail
@@ -36,10 +36,30 @@ jobs:
         env:
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
 
-      - name: 計算 RS 與大盤廣度
+      - name: 個股分類（產業、主題 ETF 成分股；每週一次）
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python classify_us.py 2>&1 | tee logs/classify.log
+
+      - name: 計算 RS、大盤廣度、板塊強度與熱圖
         run: |
           set -o pipefail
           python rs_us.py 2>&1 | tee logs/rs.log
+          python heatmap.py 2>&1 | tee -a logs/rs.log
+
+      - name: Market Monitor
+        run: |
+          set -o pipefail
+          python mm_us.py 2>&1 | tee logs/mm.log
+
+      - name: 類股／主題 ETF 強度與 RSI
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python etf_us.py 2>&1 | tee logs/etf.log
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
 
       - name: 存檔到 repo
         if: always()
@@ -47,7 +67,7 @@ jobs:
           git config user.name "tracker-bot"
           git config user.email "tracker-bot@users.noreply.github.com"
           git add -A data/ logs/ || true
-          git add RS_美股.xlsx 2>/dev/null || true
+          git add RS_美股.xlsx Market_Monitor_美股.xlsx ETF強度_美股.xlsx 板塊RSI_熱圖_美股.xlsx sectors_us.csv 2>/dev/null || true
           git diff --cached --quiet || git commit -m "US RS $(date -u +%F)"
           for i in 1 2 3; do
             git push && break

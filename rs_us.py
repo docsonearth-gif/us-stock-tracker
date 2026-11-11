@@ -27,7 +27,7 @@ DATA = os.path.join(ROOT, "data")
 OUT_XLSX = os.path.join(ROOT, "RS_美股.xlsx")
 HIST_CSV = os.path.join(DATA, "sector_history.csv")
 BREADTH_CSV = os.path.join(DATA, "market_breadth.csv")
-SECTOR_FILES = ["sectors_us.csv"]
+SECTOR_FILES = ["sectors_us.csv", "sectors_us_補充.csv"]
 
 MIN_RS = int(os.getenv("MIN_RS", "80"))
 MIN_PRICE = float(os.getenv("MIN_PRICE", "10"))                       # 美元

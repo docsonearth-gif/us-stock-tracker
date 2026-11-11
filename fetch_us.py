@@ -174,9 +174,15 @@ def yahoo_index(start, end):
 
 # ---------- 4. EODHD Bulk（備援、對帳） ----------
 
+def bulk_bars(day):
+    """EODHD Bulk：某一天整個美國市場的日線 → {code: bar}。"""
+    return {norm_code(b.get("code", "")): b for b in (eodhd_get("eod-bulk-last-day/US", {"date": day}) or [])}
+
+
 def eodhd_bulk(day, prev_rows):
-    """EODHD 一次抓整個美國市場某一天。ret＝(收盤＋股利) ÷ (前一日收盤 ÷ 分割比例) − 1。"""
-    bars = eodhd_get("eod-bulk-last-day/US", {"date": day}) or []
+    """EODHD 一次抓整個美國市場某一天。ret＝(收盤＋股利) ÷ (前一日收盤 ÷ 分割比例) − 1。
+    有分割、或漲跌超過 ±35% 的股票（反分割常漏在分割清單外），改用該檔自己的還原價重算。"""
+    bars = bulk_bars(day)
     splits, divs = {}, {}
     try:
         for s in eodhd_get("eod-bulk-last-day/US", {"date": day, "type": "splits"}) or []:
@@ -187,8 +193,7 @@ def eodhd_bulk(day, prev_rows):
     except Exception as e:
         print(f"  EODHD 分割／股利資料失敗（報酬率可能少算除息）：{e}")
     rows = {}
-    for b in bars:
-        c = norm_code(b.get("code", ""))
+    for c, b in bars.items():
         close = b.get("close")
         if not close:
             continue
@@ -199,7 +204,31 @@ def eodhd_bulk(day, prev_rows):
             ret = (close + divs.get(c, 0.0)) / pc - 1 if pc > 0 else None
         rows[c] = {"code": c, "open": b.get("open"), "high": b.get("high"), "low": b.get("low"),
                    "close": close, "volume": b.get("volume"), "ret": ret, "src": "eodhd"}
+    fix_returns(day, rows, prev_rows, set(splits))
     return rows
+
+
+def fix_returns(day, rows, prev_rows, split_codes):
+    """分割或大漲大跌的股票：抓該檔近 10 天日線，用 adjusted_close 算當天報酬（和回補時同一個方法）。"""
+    stocks = load_stocks()
+    cand = [c for c, r in rows.items() if c in stocks and c in prev_rows and
+            (c in split_codes or r["ret"] is None or abs(r["ret"]) > 0.35)]
+    if not cand:
+        return
+    start = (datetime.strptime(day, "%Y-%m-%d") - timedelta(days=12)).date().isoformat()
+    fixed = []
+    for c in cand[:150]:
+        try:
+            bars = [b for b in (eodhd_get(f"eod/{c}.US", {"from": start, "to": day}) or []) if b.get("adjusted_close")]
+        except Exception:
+            continue
+        if len(bars) >= 2 and bars[-1]["date"] == day and bars[-2]["adjusted_close"] > 0:
+            new = bars[-1]["adjusted_close"] / bars[-2]["adjusted_close"] - 1
+            if rows[c]["ret"] is None or abs(new - rows[c]["ret"]) > 0.005:
+                fixed.append(f"{c} {(rows[c]['ret'] or 0) * 100:+.1f}%→{new * 100:+.1f}%")
+            rows[c]["ret"] = new
+    if fixed:
+        print(f"  {day} 用還原價重算報酬 {len(fixed)} 檔：{'、'.join(fixed[:20])}")
 
 
 def compare(day, yahoo, eod):

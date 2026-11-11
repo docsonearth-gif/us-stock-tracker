@@ -1,0 +1,39 @@
+name: 修正歷史成交量（一次性）
+
+on:
+  push:
+    paths: ["repair.txt"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tracker
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests pandas
+      - name: 用 Bulk API 重抓成交量
+        run: |
+          mkdir -p logs
+          set -o pipefail
+          python repair_volume.py 2>&1 | tee logs/repair.log
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+      - name: 存檔
+        if: always()
+        run: |
+          git config user.name "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+          git add -A data/ logs/
+          git diff --cached --quiet || git commit -m "修正歷史成交量 $(date -u +%F)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs origin main || { git rebase --abort; exit 1; }; done
