@@ -1,0 +1,213 @@
+$ADDS: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AIIA-R"}}}
+$AIIA-R: possibly delisted; no timezone found
+$ACVA: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$ACA: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+4 Failed downloads:
+['ADDS', 'ACVA', 'ACA']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+['AIIA-R']: possibly delisted; no timezone found
+$ASGI-R: possibly delisted; no timezone found
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ASGI-R-W"}}}
+$ASGI-R-W: possibly delisted; no timezone found
+$BCAT-R-W: possibly delisted; no timezone found
+$ATKR: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$BCAT-R: possibly delisted; no timezone found
+
+5 Failed downloads:
+['ASGI-R', 'ASGI-R-W', 'BCAT-R-W', 'BCAT-R']: possibly delisted; no timezone found
+['ATKR']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$CCO: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$BZH: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+2 Failed downloads:
+['CCO', 'BZH']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$CSAN: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+1 Failed download:
+['CSAN']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$DOMO: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$DGAC-R: possibly delisted; no timezone found
+
+2 Failed downloads:
+['DOMO']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+['DGAC-R']: possibly delisted; no timezone found
+$FDXF-W: possibly delisted; no timezone found
+
+1 Failed download:
+['FDXF-W']: possibly delisted; no timezone found
+$HKIT: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+1 Failed download:
+['HKIT']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$LNAI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+1 Failed download:
+['LNAI']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$LRHC: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MBGL-WI: possibly delisted; no timezone found
+$MBGL-W: possibly delisted; no timezone found
+$MAMK: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+4 Failed downloads:
+['LRHC', 'MAMK']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+['MBGL-WI', 'MBGL-W']: possibly delisted; no timezone found
+$MSGK-W: possibly delisted; no timezone found
+$MPTI-R-W: possibly delisted; no timezone found
+$MSGR-WI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MSGK-WI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MPTI-R: possibly delisted; no timezone found
+$MSGR-W: possibly delisted; no timezone found
+
+6 Failed downloads:
+['MSGK-W', 'MPTI-R-W', 'MPTI-R', 'MSGR-W']: possibly delisted; no timezone found
+['MSGR-WI', 'MSGK-WI']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NMCO-R-W: possibly delisted; no timezone found
+$NATH: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NMCO-R: possibly delisted; no timezone found
+
+3 Failed downloads:
+['NMCO-R-W', 'NMCO-R']: possibly delisted; no timezone found
+['NATH']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$OCAC-R: possibly delisted; no timezone found
+$NVNWF: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NVRI-W: possibly delisted; no timezone found
+$NVNI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+4 Failed downloads:
+['OCAC-R', 'NVRI-W']: possibly delisted; no timezone found
+['NVNWF', 'NVNI']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$PLUN-R: possibly delisted; no timezone found
+$PERF: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+2 Failed downloads:
+['PLUN-R']: possibly delisted; no timezone found
+['PERF']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$PNAQ-R: possibly delisted; no timezone found
+
+1 Failed download:
+['PNAQ-R']: possibly delisted; no timezone found
+$RMAX: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+
+1 Failed download:
+['RMAX']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$SAGU-R: possibly delisted; no timezone found
+
+1 Failed download:
+['SAGU-R']: possibly delisted; no timezone found
+$VSME: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$VGNT-W: possibly delisted; no timezone found
+$WALD: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$UWMC-R-W: possibly delisted; no timezone found
+$UUU: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$UWMC-R: possibly delisted; no timezone found
+
+6 Failed downloads:
+['VSME', 'WALD', 'UUU']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+['VGNT-W', 'UWMC-R-W', 'UWMC-R']: possibly delisted; no timezone found
+$XFLH-R: possibly delisted; no timezone found
+$WEAV: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WKEY: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WPAC-R: possibly delisted; no timezone found
+$WPRT: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WENC-R: possibly delisted; no timezone found
+
+6 Failed downloads:
+['XFLH-R', 'WPAC-R', 'WENC-R']: possibly delisted; no timezone found
+['WEAV', 'WKEY', 'WPRT']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$RMAX: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WALD: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$CCO: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$VSME: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NMCO-R: possibly delisted; no timezone found
+$NATH: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$ACVA: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NVRI-W: possibly delisted; no timezone found
+$NMCO-R-W: possibly delisted; no timezone found
+$DOMO: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NVNI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$LRHC: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$SAGU-R: possibly delisted; no timezone found
+$CSAN: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MSGR-W: possibly delisted; no timezone found
+$OCAC-R: possibly delisted; no timezone found
+$MSGR-WI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WKEY: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$UWMC-R-W: possibly delisted; no timezone found
+$MSGK-W: possibly delisted; no timezone found
+$MSGK-WI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$ASGI-R-W: possibly delisted; no timezone found
+$BCAT-R-W: possibly delisted; no timezone found
+$HKIT: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$ATKR: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$ASGI-R: possibly delisted; no timezone found
+$FDXF-W: possibly delisted; no timezone found
+$UUU: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$DGAC-R: possibly delisted; no timezone found
+$MPTI-R: possibly delisted; no timezone found
+$AIIA-R: possibly delisted; no timezone found
+$WEAV: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$VGNT-W: possibly delisted; no timezone found
+$ADDS: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MBGL-W: possibly delisted; no timezone found
+$LNAI: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WPAC-R: possibly delisted; no timezone found
+$BZH: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$WPRT: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MBGL-WI: possibly delisted; no timezone found
+$MAMK: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$ACA: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$UWMC-R: possibly delisted; no timezone found
+$PERF: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$NVNWF: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+$MPTI-R-W: possibly delisted; no timezone found
+$WENC-R: possibly delisted; no timezone found
+$PLUN-R: possibly delisted; no timezone found
+$PNAQ-R: possibly delisted; no timezone found
+$BCAT-R: possibly delisted; no timezone found
+
+50 Failed downloads:
+['RMAX', 'WALD', 'CCO', 'VSME', 'NATH', 'ACVA', 'DOMO', 'NVNI', 'LRHC', 'CSAN', 'MSGR-WI', 'WKEY', 'MSGK-WI', 'HKIT', 'ATKR', 'UUU', 'WEAV', 'ADDS', 'LNAI', 'BZH', 'WPRT', 'MAMK', 'ACA', 'PERF', 'NVNWF']: possibly delisted; no price data found  (1d 2026-10-31 -> 2026-11-12)
+['NMCO-R', 'NVRI-W', 'NMCO-R-W', 'SAGU-R', 'MSGR-W', 'OCAC-R', 'UWMC-R-W', 'MSGK-W', 'ASGI-R-W', 'BCAT-R-W', 'ASGI-R', 'FDXF-W', 'DGAC-R', 'MPTI-R', 'AIIA-R', 'VGNT-W', 'MBGL-W', 'WPAC-R', 'MBGL-WI', 'UWMC-R', 'MPTI-R-W', 'WENC-R', 'PLUN-R', 'PNAQ-R', 'BCAT-R']: possibly delisted; no timezone found
+$XFLH-R: possibly delisted; no timezone found
+
+1 Failed download:
+['XFLH-R']: possibly delisted; no timezone found
+歷史不足 300 天，先用 EODHD 回補…
+[working] 抓 2024-09-02 之後的日線
+EODHD 普通股（主要交易所，已排除權證／特別股／SPAC）：5653 檔
+  500/5653（0.7 分鐘）
+  1000/5653（1.8 分鐘）
+  1500/5653（2.9 分鐘）
+  2000/5653（3.9 分鐘）
+  2500/5653（4.9 分鐘）
+  3000/5653（6.0 分鐘）
+  3500/5653（6.7 分鐘）
+  4000/5653（7.7 分鐘）
+  4500/5653（8.8 分鐘）
+  5000/5653（9.8 分鐘）
+  5500/5653（10.9 分鐘）
+個股：成功 5653、沒有資料 0、失敗 0
+指數 spx：OK
+指數 ixic：OK
+  2024-09-02: 只有 1 檔，略過
+  2024-11-28: 只有 1 檔，略過
+  2025-01-09: 只有 1 檔，略過
+  2025-01-20: 只有 1 檔，略過
+  2025-02-17: 只有 1 檔，略過
+  2025-05-26: 只有 1 檔，略過
+  2025-06-19: 只有 1 檔，略過
+  2025-07-04: 只有 1 檔，略過
+  2025-09-01: 只有 1 檔，略過
+  2025-11-27: 只有 1 檔，略過
+  2026-01-19: 只有 1 檔，略過
+  2026-02-16: 只有 1 檔，略過
+  2026-05-25: 只有 1 檔，略過
+  2026-06-19: 只有 1 檔，略過
+  2026-07-03: 只有 1 檔，略過
+  2026-09-07: 只有 16 檔，略過
+寫入每日檔 550 天（已存在略過 0 天），每天約 5211 檔
+已有資料到 2026-11-10；下載 2026-10-31 之後
+Yahoo：5602/5653 檔有資料（6.0 分鐘）
+  2026-11-11: 寫入 5157 檔（yahoo）
+目前共有 551 個交易日的資料。
