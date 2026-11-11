@@ -87,7 +87,7 @@ def have_days():
 
 
 def fmt(v, nd=4):
-    if v is None:
+    if v is None or v == "":
         return ""
     try:
         if v != v:  # NaN
@@ -100,13 +100,15 @@ def fmt(v, nd=4):
 def save_day(key, rows):
     """rows：list of dict（欄位見 FIELDS）。"""
     os.makedirs(DAILY, exist_ok=True)
-    with gzip.open(day_path(key), "wt", encoding="utf-8", newline="") as f:
+    tmp = day_path(key) + ".tmp"   # 先寫暫存檔再改名，中途出錯也不會留下半個檔案
+    with gzip.open(tmp, "wt", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(FIELDS)
         for r in sorted(rows, key=lambda x: x["code"]):
             w.writerow([r["code"], fmt(r.get("open")), fmt(r.get("high")), fmt(r.get("low")),
                         fmt(r.get("close")), fmt(r.get("volume"), 0), fmt(r.get("ret"), 6),
                         r.get("src", "")])
+    os.replace(tmp, day_path(key))
 
 
 def load_day(key):
