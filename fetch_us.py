@@ -1,21 +1,20 @@
 """
-每天下載美股行情（yfinance），存成 data/daily/YYYY-MM-DD.csv.gz
+每天下載美股行情（EODHD Bulk API：一次呼叫抓整個美國市場某一天），存成 data/daily/YYYY-MM-DD.csv.gz
 
 流程
-1. 更新股票清單：有 EODHD 金鑰時用 EODHD；沒有（訂閱到期後）改用 Nasdaq 官方的上市清單
-2. 第一次執行、歷史不夠時：自動用 EODHD 回補（backfill_eodhd.py 的 working 模式）
-3. 用 yfinance 下載「最後一個已存日期往前 10 天」到今天，補上所有缺的交易日
+1. 更新股票清單（EODHD；金鑰失效時改用 Nasdaq 官方上市清單）
+2. 第一次執行、歷史不夠時：自動回補（backfill_eodhd.py 的 working 模式）
+3. 用 S&P 500 的日線找出「最後一個已存日期」之後、已收盤的交易日，逐日用 Bulk API 補上
    （排程漏跑幾天，下一次會自動補齊）
-4. Yahoo 資料不完整（家數太少）時：有 EODHD 金鑰就改用 EODHD Bulk API；沒有就先不寫，等下次
-5. 對帳（有 EODHD 金鑰時自動）：同一天 Yahoo 與 EODHD 的收盤、成交量、報酬率比對，
-   摘要寫進 data/compare.csv
-6. 只保留最近 HIST_DAYS 個交易日
+   ret＝(收盤＋當天除息的股利) ÷ (前一日收盤 ÷ 分割比例) − 1
+4. 家數太少（資料還沒出齊）就先不寫，等下次
+5. 只保留最近 HIST_DAYS 個交易日
 
 環境變數
   HIST_DAYS     保留幾個交易日（預設 560）
-  SOURCE        yahoo（預設）／eodhd（強制用 EODHD Bulk API）
-  COMPARE       1／0：要不要和 EODHD 對帳（預設：有金鑰就對帳）
+  SOURCE        eodhd（預設）／yahoo（備用：yfinance）
   MIN_COVERAGE  當天家數至少要有前一天的幾成才寫入（預設 0.85）
+  VERIFY_DATE   YYYY-MM-DD：只驗證，不寫檔。用 Bulk API 重算那一天，和已存的資料（回補時用還原價算的）比對
 """
 
 import csv
@@ -32,8 +31,9 @@ from common import (BAD_SUFFIX, DATA, EODHD_KEY, INDEXES, ROOT, NOT_COMMON, day_
                     save_stocks)
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "560"))
-SOURCE = os.getenv("SOURCE", "yahoo")
-COMPARE = os.getenv("COMPARE", "1" if EODHD_KEY else "0") == "1"
+SOURCE = os.getenv("SOURCE", "eodhd")
+COMPARE = os.getenv("COMPARE", "0") == "1"
+VERIFY_DATE = os.getenv("VERIFY_DATE", "")
 MIN_COVERAGE = float(os.getenv("MIN_COVERAGE", "0.85"))
 CHUNK = 200
 COMPARE_CSV = os.path.join(DATA, "compare.csv")
@@ -237,10 +237,56 @@ def compare(day, yahoo, eod):
     print(f"  對帳 {day}：{s}")
 
 
+def eodhd_index(start, end):
+    out = {}
+    for col, (eod, _) in INDEXES.items():
+        try:
+            for b in eodhd_get(f"eod/{eod}", {"from": start, "to": end}) or []:
+                d = out.setdefault(b["date"], {})
+                d[col] = b.get("close") or ""
+                d[f"{col}_vol"] = b.get("volume") or ""
+        except Exception as e:
+            print(f"指數 {col} 失敗：{e}")
+    return out
+
+
+def as_float_rows(day_rows):
+    out = {}
+    for c, r in day_rows.items():
+        rr = dict(r)
+        for k in ("open", "high", "low", "close", "volume", "ret"):
+            rr[k] = float(r[k]) if r.get(k) not in (None, "") else None
+        out[c] = rr
+    return out
+
+
+def verify(day):
+    """用 Bulk API 重算某一天，和回補時（用 adjusted_close 算）存的資料比對。"""
+    days = have_days()
+    if day not in days or days.index(day) == 0:
+        print(f"沒有 {day} 或前一天的資料，無法驗證")
+        return
+    prev = load_day(days[days.index(day) - 1])
+    stored = as_float_rows(load_day(day))
+    e = eodhd_bulk(day, prev)
+    e = {c: r for c, r in e.items() if c in stored or c in load_stocks()}
+    global COMPARE_CSV
+    COMPARE_CSV = os.path.join(LOGS, "verify.csv")
+    compare(day, stored, e)
+    both = [c for c in stored if c in e and stored[c]["ret"] is not None and e[c]["ret"] is not None]
+    bad = sorted(both, key=lambda c: -abs(stored[c]["ret"] - e[c]["ret"]))[:15]
+    print("報酬率差最大的 15 檔（已存 vs Bulk，%）：")
+    for c in bad:
+        print(f"  {c:8s} {stored[c]['ret'] * 100:8.2f} {e[c]['ret'] * 100:8.2f}")
+
+
 # ---------- 主程式 ----------
 
 def main():
     os.makedirs(DATA, exist_ok=True)
+    os.makedirs(LOGS, exist_ok=True)
+    if VERIFY_DATE:
+        return verify(VERIFY_DATE)
     stocks = update_universe()
 
     if len(have_days()) < 300:
@@ -255,60 +301,56 @@ def main():
     days = have_days()
     last = days[-1] if days else (date.today() - timedelta(days=30)).isoformat()
     start = (datetime.strptime(last, "%Y-%m-%d") - timedelta(days=10)).date().isoformat()
-    end = (date.today() + timedelta(days=1)).isoformat()
-    print(f"已有資料到 {last}；下載 {start} 之後")
+    closed = last_closed_day()
+    print(f"已有資料到 {last}；最後一個已收盤的交易日：{closed}；來源 {SOURCE}")
 
     # 交易日：以 S&P 500 有收盤的日子為準
-    closed = last_closed_day()
-    idx_new = {d: v for d, v in yahoo_index(start, end).items() if d <= closed}
+    if SOURCE == "yahoo":
+        idx_new = yahoo_index(start, (date.today() + timedelta(days=1)).isoformat())
+    else:
+        idx_new = eodhd_index(start, closed)
+    idx_new = {d: v for d, v in idx_new.items() if d <= closed}
     trade_days = sorted(d for d, v in idx_new.items() if v.get("spx") and d > last)
-    print(f"最後一個已收盤的交易日：{closed}")
-    if not trade_days and SOURCE != "eodhd":
-        print("沒有新的交易日（假日或 Yahoo 尚未更新）。")
     idx = load_index()
     for d, v in idx_new.items():
         idx.setdefault(d, {}).update(v)
     save_index(idx)
+    if not trade_days:
+        print("沒有新的交易日（假日或資料尚未更新）。")
 
     codes = sorted(stocks)
     prev = load_day(last) if days else {}
     prev_n = len(prev) or len(codes) * 0.6
 
-    by_day = {}
+    frames = {}
     if trade_days and SOURCE == "yahoo":
         t0 = time.time()
-        frames = yahoo_window(codes, start, end)
-        print(f"Yahoo：{len(frames)}/{len(codes)} 檔有資料（{(time.time() - t0) / 60:.1f} 分鐘）")
-        by_day = yahoo_rows(frames, trade_days)
-    elif SOURCE == "eodhd":
-        trade_days = trade_days or [os.getenv("TARGET_DATE", closed)]
+        frames = yahoo_rows(yahoo_window(codes, start, (date.today() + timedelta(days=1)).isoformat()), trade_days)
+        print(f"Yahoo 下載完成（{(time.time() - t0) / 60:.1f} 分鐘）")
 
     for d in trade_days:
-        rows = by_day.get(d, [])
-        ymap = {r["code"]: r for r in rows}
-        need_eod = SOURCE == "eodhd" or len(rows) < prev_n * MIN_COVERAGE
-        emap = {}
-        if EODHD_KEY and (need_eod or COMPARE):
+        if SOURCE == "yahoo":
+            rows = frames.get(d, [])
+            rmap = {r["code"]: r for r in rows}
+            if COMPARE and EODHD_KEY:
+                try:
+                    compare(d, rmap, {c: r for c, r in eodhd_bulk(d, prev).items() if c in stocks})
+                except Exception as e:
+                    print(f"  對帳失敗：{e}")
+        else:
             try:
-                emap = eodhd_bulk(d, prev)
-                emap = {c: r for c, r in emap.items() if c in stocks}
+                rmap = {c: r for c, r in eodhd_bulk(d, prev).items() if c in stocks}
             except Exception as e:
                 print(f"  EODHD Bulk {d} 失敗：{e}")
-        if need_eod:
-            if emap and len(emap) >= prev_n * MIN_COVERAGE:
-                print(f"  {d}: Yahoo 只有 {len(rows)} 檔，改用 EODHD（{len(emap)} 檔）")
-                rows, ymap = list(emap.values()), emap
-            else:
-                print(f"  {d}: 資料不完整（Yahoo {len(rows)} 檔、EODHD {len(emap)} 檔，"
-                      f"前一天 {int(prev_n)} 檔），這天先不寫，下次再補")
-                break  # 後面的日子也先不寫，避免中間留洞
-        elif emap and COMPARE:
-            compare(d, ymap, emap)
+                break
+            rows = list(rmap.values())
+        if len(rows) < prev_n * MIN_COVERAGE:
+            print(f"  {d}: 只有 {len(rows)} 檔（前一天 {int(prev_n)} 檔），資料可能還沒出齊，這天先不寫，下次再補")
+            break  # 後面的日子也先不寫，避免中間留洞
         save_day(d, rows)
-        print(f"  {d}: 寫入 {len(rows)} 檔（{rows[0]['src'] if rows else ''}）")
-        prev, prev_n = ymap, len(rows)
+        print(f"  {d}: 寫入 {len(rows)} 檔（{SOURCE}）")
+        prev, prev_n = rmap, len(rows)
 
-    # 6. 刪掉超出保留期的舊檔
     days = have_days()
     for k in days[:-HIST_DAYS] if len(days) > HIST_DAYS else []:
         os.remove(day_path(k))

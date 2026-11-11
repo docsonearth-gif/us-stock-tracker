@@ -1,0 +1,36 @@
+name: 驗證 Bulk 算法
+
+on:
+  push:
+    paths: ["verify.txt"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests pandas
+      - name: 驗證
+        run: |
+          mkdir -p logs
+          for d in $(grep -E '^[0-9]{4}-' verify.txt); do
+            echo "===== $d"
+            VERIFY_DATE=$d python fetch_us.py
+          done 2>&1 | tee logs/verify.log
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+      - name: 存檔
+        run: |
+          git config user.name "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+          git add logs/
+          git diff --cached --quiet || git commit -m "verify $(date -u +%F)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs origin main; done
