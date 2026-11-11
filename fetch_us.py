@@ -27,8 +27,8 @@ from datetime import date, datetime, timedelta
 import pandas as pd
 import requests
 
-from common import (DATA, EODHD_KEY, INDEXES, ROOT, NOT_COMMON, day_path, eodhd_get, eodhd_symbols,
-                    have_days, load_day, load_index, load_stocks, norm_code, save_day, save_index,
+from common import (BAD_SUFFIX, DATA, EODHD_KEY, INDEXES, ROOT, NOT_COMMON, day_path, eodhd_get, eodhd_symbols,
+                    have_days, last_closed_day, load_day, load_index, load_stocks, norm_code, save_day, save_index,
                     save_stocks)
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "560"))
@@ -62,6 +62,8 @@ def nasdaq_trader_symbols():
             ex = {"N": "NYSE", "A": "AMEX", "P": "NYSE ARCA", "Z": "BATS", "V": "IEX"}.get(
                 (r.get(ex_col) or "").strip(), "NASDAQ") if ex_col else "NASDAQ"
             code = norm_code(sym)
+            if BAD_SUFFIX.search(code):
+                continue
             out[code] = {"code": code, "name": name, "exchange": ex}
     return out
 
@@ -85,6 +87,7 @@ def update_universe():
         o = old.get(k, {})
         new[k] = {**v, "sector": o.get("sector", ""), "industry": o.get("industry", ""),
                   "source": src, "first_seen": o.get("first_seen") or today}
+    new = {k: v for k, v in new.items() if not BAD_SUFFIX.search(k)}
     added = sorted(set(new) - set(old))
     removed = sorted(set(old) - set(new))
     if old:
@@ -256,8 +259,10 @@ def main():
     print(f"已有資料到 {last}；下載 {start} 之後")
 
     # 交易日：以 S&P 500 有收盤的日子為準
-    idx_new = yahoo_index(start, end)
+    closed = last_closed_day()
+    idx_new = {d: v for d, v in yahoo_index(start, end).items() if d <= closed}
     trade_days = sorted(d for d, v in idx_new.items() if v.get("spx") and d > last)
+    print(f"最後一個已收盤的交易日：{closed}")
     if not trade_days and SOURCE != "eodhd":
         print("沒有新的交易日（假日或 Yahoo 尚未更新）。")
     idx = load_index()
@@ -276,7 +281,7 @@ def main():
         print(f"Yahoo：{len(frames)}/{len(codes)} 檔有資料（{(time.time() - t0) / 60:.1f} 分鐘）")
         by_day = yahoo_rows(frames, trade_days)
     elif SOURCE == "eodhd":
-        trade_days = trade_days or [os.getenv("TARGET_DATE", date.today().isoformat())]
+        trade_days = trade_days or [os.getenv("TARGET_DATE", closed)]
 
     for d in trade_days:
         rows = by_day.get(d, [])

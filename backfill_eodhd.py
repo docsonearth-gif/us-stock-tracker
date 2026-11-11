@@ -27,7 +27,7 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, timedelta
 
-from common import (DATA, INDEXES, ROOT, eodhd_get, eodhd_symbols, have_days, load_index,
+from common import (DATA, INDEXES, ROOT, eodhd_get, last_closed_day, eodhd_symbols, have_days, load_index,
                     load_stocks, save_day, save_index, save_stocks)
 
 MODE = os.getenv("MODE", "working")
@@ -137,6 +137,15 @@ def run_working():
             print(f"指數 {col}：OK")
         except Exception as e:
             print(f"指數 {col} 失敗：{e}")
+    save_index(idx)
+
+    # 盤中還沒收盤的那天不寫；指數也一樣
+    closed = last_closed_day()
+    for d in [d for d in by_day if d > closed]:
+        print(f"  {d}: 還沒收盤，略過")
+        del by_day[d]
+    for d in [d for d in idx if d > closed]:
+        del idx[d]
     save_index(idx)
 
     # 每日檔：家數太少的日期（假日、半天資料）不寫

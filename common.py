@@ -17,6 +17,8 @@ import gzip
 import os
 import re
 import time
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -46,6 +48,20 @@ NOT_COMMON = re.compile(
     r"\bfixed[- ]to[- ]floating\b|\bperpetual\b",
     re.I,
 )
+
+
+# 代號尾碼：權利（-R、-RI、-RT）、權證（-W、-WS）、發行前交易（-WI）、單位（-U）；測試代號
+BAD_SUFFIX = re.compile(r"-(R|RI|RT|W|WS|WI|U|UN)$|^[A-Z]TEST(-|$)")
+NY = ZoneInfo("America/New_York")
+
+
+def last_closed_day():
+    """最後一個「已經收盤」的美東日期（YYYY-MM-DD）。16:45 前算前一天，避免把盤中資料當成收盤。"""
+    now = datetime.now(NY)
+    d = now.date() if now.hour * 60 + now.minute >= 16 * 60 + 45 else now.date() - timedelta(days=1)
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d.isoformat()
 
 
 def norm_code(code):
@@ -186,7 +202,7 @@ def eodhd_symbols(delisted=False):
         if NOT_COMMON.search(name):
             continue
         code = norm_code(r.get("Code", ""))
-        if not code:
+        if not code or BAD_SUFFIX.search(code):
             continue
         out[code] = {"code": code, "name": name, "exchange": ex.replace("NYSE MKT", "AMEX")
                      .replace("NYSE AMERICAN", "AMEX"), "eod_code": r.get("Code")}
