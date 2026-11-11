@@ -1,50 +1,50 @@
-資料：551 個交易日、5653 檔，最新 2026-11-11
-計算 RS 的股票：4399 檔；符合必要條件：73 檔
+資料：550 個交易日、5653 檔，最新 2026-11-10
+計算 RS 的股票：4706 檔；符合必要條件：69 檔
 
 大盤廣度（最近 5 日）：
             52週新高  52週新低  收黑比例%  第②階段比例%  全部站上50MA%  S&P 25日出貨日數  Nasdaq 25日出貨日數  市場狀態 指數廣度背離
 日期                                                                                           
+2026-11-04    362    321    3.3     14.6       43.2            7               6    擴張       
 2026-11-05    356    813   69.1     11.8       35.2            8               7  出貨警訊       
 2026-11-06     75    442   13.3     12.0       36.3            8               7    收縮       
 2026-11-09    169    253    3.6     14.3       43.1            8               7    收縮       
 2026-11-10    128    335   13.3     14.1       41.2            9               7    收縮       
-2026-11-11     78    106   26.9     15.5       42.7            8               7    收縮       
 
 必要條件候選前 15 名：
   代號                            名稱  RS評分  距52週高點%  近10日創高次數
- KOD           Kodiak Sciences Inc  99.0     -0.5         3
-MRNA                   Moderna Inc  99.0    -12.0         4
-XNCR                    Xencor Inc  98.0     -1.1         6
-MSGK      MSG Knickerbockers Corp.  98.0     -4.8         5
-HNGE            Hinge Health, Inc.  98.0     -2.4         5
-FIGS                      Figs Inc  97.0     -1.2         5
-GKOS                  Glaukos Corp  97.0     -5.6         3
-ADPT Adaptive Biotechnologies Corp  97.0     -1.7         3
-AMLX    Amylyx Pharmaceuticals Inc  97.0    -24.2         0
-AZTA                    Azenta Inc  96.0     -0.5         1
-  SN              SharkNinja, Inc.  96.0     -2.7         6
-LFST   Lifestance Health Group Inc  96.0     -6.9         4
-TGTX           TG Therapeutics Inc  96.0     -6.7         3
-PACS              PACS Group, Inc.  96.0     -5.5         1
- HAE       Haemonetics Corporation  96.0     -8.2         2
+ KOD           Kodiak Sciences Inc  99.0     -1.0         2
+MRNA                   Moderna Inc  99.0    -10.7         4
+HNGE            Hinge Health, Inc.  98.0     -1.4         5
+FIGS                      Figs Inc  98.0     -0.7         4
+XNCR                    Xencor Inc  98.0     -1.7         5
+MSGK      MSG Knickerbockers Corp.  98.0     -4.6         5
+GKOS                  Glaukos Corp  97.0     -7.4         3
+GMAB                     Genmab AS  97.0     -9.8         1
+  SN              SharkNinja, Inc.  97.0     -2.7         6
+ HAE       Haemonetics Corporation  97.0     -7.3         2
+AMLX    Amylyx Pharmaceuticals Inc  97.0    -24.9         0
+ADPT Adaptive Biotechnologies Corp  96.0     -4.7         2
+LFST   Lifestance Health Group Inc  96.0     -7.0         5
+PACS              PACS Group, Inc.  96.0     -5.0         2
+TGTX           TG Therapeutics Inc  96.0     -5.5         3
 
-今日創 52 週新高：78 檔；符合 VCP 先決條件：766 檔
+今日創 52 週新高：128 檔；符合 VCP 先決條件：760 檔
 
-S&P 500 高點 2026-10-06，距今 26 個交易日（目前 -2.9%）；修正低點 2026-11-05（-5.9%），距今 4 天
-Utility Screen 符合 85 檔（A 4、B 66、C 15），前 15 名：
-分級   代號                                         名稱  綜合分  自高點RS  修正期RS  自低點RS  年RS  距20日線%
- A XNCR                                 Xencor Inc 93.9   98.0   97.0   90.0 98.0    32.8
- A SGRY                       Surgery Partners Inc 93.4   99.0   98.0   88.0 96.0    27.0
- A FIGS                                   Figs Inc 91.4   98.0   98.0   85.0 97.0     9.9
- A   SG                             Sweetgreen Inc 91.2   97.0   95.0   86.0 98.0    17.3
- B GKOS                               Glaukos Corp 88.6   97.0   97.0   80.0 97.0    17.5
- B CDNA                                 CareDx Inc 86.6   95.0   92.0   79.0 99.0    10.2
- B  CDW                                   CDW Corp 85.7   94.0   90.0   80.0 89.0     8.7
- B TGTX                        TG Therapeutics Inc 84.5   91.0   83.0   80.0 96.0     9.7
- B LFST                Lifestance Health Group Inc 82.9   90.0   82.0   78.0 96.0    10.3
- B CHYM Chime Financial, Inc. Class A Common Stock 82.8   90.0   80.0   79.0 91.0     9.9
- B  GPN                        Global Payments Inc 82.2   93.0   89.0   73.0 87.0    12.2
- B HNGE                         Hinge Health, Inc. 82.1   93.0   91.0   72.0 98.0     8.5
- B  BBY                           Best Buy Co. Inc 81.8   93.0   90.0   72.0 93.0     7.7
- B BILL                      Bill Com Holdings Inc 81.7   92.0   89.0   72.0 75.0     8.5
- B  RGR                  Sturm Ruger & Company Inc 81.1   91.0   86.0   74.0 92.0    11.7
+S&P 500 高點 2026-10-06，距今 25 個交易日（目前 -3.8%）；修正低點 2026-11-05（-5.9%），距今 3 天
+Utility Screen 符合 83 檔（A 5、B 63、C 15），前 15 名：
+分級   代號                            名稱  綜合分  自高點RS  修正期RS  自低點RS  年RS  距20日線%
+ A SGRY          Surgery Partners Inc 94.9   99.0   98.0   91.0 96.0    31.5
+ A XNCR                    Xencor Inc 94.4   98.0   97.0   91.0 98.0    34.5
+ A   SG                Sweetgreen Inc 93.0   97.0   95.0   90.0 98.0    20.0
+ A FIGS                      Figs Inc 91.4   98.0   98.0   85.0 98.0     9.2
+ A TGTX           TG Therapeutics Inc 86.8   92.0   83.0   85.0 96.0    11.9
+ B GKOS                  Glaukos Corp 87.7   97.0   97.0   78.0 97.0    17.2
+ B LFST   Lifestance Health Group Inc 84.2   90.0   82.0   81.0 96.0    11.0
+ B  CDW                      CDW Corp 84.1   93.0   90.0   77.0 88.0     6.7
+ B CDNA                    CareDx Inc 83.7   94.0   92.0   73.0 99.0     8.3
+ B  GPN           Global Payments Inc 83.7   93.0   89.0   77.0 88.0    13.8
+ B HNGE            Hinge Health, Inc. 83.6   93.0   91.0   75.0 98.0     9.2
+ B IBTA                  Ibotta, Inc. 82.2   97.0   98.0   67.0 98.0    16.3
+ B BILL         Bill Com Holdings Inc 81.9   92.0   89.0   73.0 75.0     8.8
+ B PCTY Paylocity Holding Corporation 81.6   92.0   89.0   73.0 91.0     4.6
+ B MRNA                   Moderna Inc 80.8   96.0   96.0   65.0 99.0     9.4
