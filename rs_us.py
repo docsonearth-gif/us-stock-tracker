@@ -4,7 +4,7 @@
 
 - 還原股價：每日檔的 ret（含分割、配息的日報酬）連乘回去
 - RS 評分：近 3 個月 40%＋6／9／12 個月各 20%，只和「股價 ≥ RS_MIN_PRICE（預設 1 美元）」的股票比
-- 必要條件候選：第②階段＋RS ≥ 80＋股價 ≥ 10 美元＋50 日均成交額 ≥ 2,000 萬美元
+- 必要條件候選：第②階段＋RS ≥ 85＋股價 ≥ 12 美元＋50 日均成交額 ≥ 2,000 萬美元（J Law 美股條件）
 - 市場寬度：站上 20／50／200 日線（美股慣用；TradingView S5TH 等同一概念）
 - 出貨日：S&P 500 跌 ≥ 0.2% 且 NYSE 股票總成交量比前一天大；Nasdaq 另外算（用 Nasdaq 股票成交量）
 - 沒有漲跌停：台股的「新高跌停」改成「新高股收跌 ≥ 5%」
@@ -29,8 +29,8 @@ HIST_CSV = os.path.join(DATA, "sector_history.csv")
 BREADTH_CSV = os.path.join(DATA, "market_breadth.csv")
 SECTOR_FILES = ["sectors_us.csv", "sectors_us_補充.csv"]
 
-MIN_RS = int(os.getenv("MIN_RS", "80"))
-MIN_PRICE = float(os.getenv("MIN_PRICE", "10"))                       # 美元
+MIN_RS = int(os.getenv("MIN_RS", "85"))
+MIN_PRICE = float(os.getenv("MIN_PRICE", "12"))                       # 美元（J Law 美股：≥ 12）
 MIN_TURNOVER = float(os.getenv("MIN_DOLLAR_VOL_M", "20")) * 1e6       # 50 日均成交額（美元）
 RS_MIN_PRICE = float(os.getenv("RS_MIN_PRICE", "1"))                  # 參與 RS 排名的最低股價
 NH_DROP = float(os.getenv("NH_DROP", "5"))                            # 新高股收跌幾 % 算「新高大跌」
@@ -466,6 +466,57 @@ def rank_changes(h):
     return out.reset_index()
 
 
+# ---------- 板塊訊號（美股回測定案，見 data/backtest_report_us.md） ----------
+SIG_NH = int(os.getenv("SIG_NEW_HIGHS", "3"))         # 主流：創 52 週新高 ≥ 3 檔且創高股平均收紅
+SIG_DVR = float(os.getenv("SIG_DOLLAR_VOL_RATIO", "1.3"))  # 資金：板塊 5 日均成交額 ÷ 50 日均 ≥ 1.3
+SIG_DAYS = 130
+GROUP_SIG_CSV = os.path.join(DATA, "group_signals.csv")
+
+
+def group_signals(groups, panels, piv):
+    """groups：{(類型, 板塊): [代號]}。最近 SIG_DAYS 天每個板塊的訊號，存 data/group_signals.csv。
+    主流＝創高 ≥ SIG_NH 且收紅＋成交額比 ≥ SIG_DVR；醞釀＝成交額比 ≥ SIG_DVR、創高 < 2；啟動＝創高 ≥ SIG_NH 且收紅、成交額比未達。"""
+    nh_all, pct, rs = panels["new_high"], panels["pct"], panels["rs"]
+    dv = piv["turnover"]
+    dv5, dv50 = dv.rolling(5, min_periods=3).mean(), dv.rolling(50, min_periods=40).mean()
+    dates = rs.index[-SIG_DAYS:]
+    rows = []
+    for (kind, g), codes in groups.items():
+        c = [x for x in set(codes) if x in rs.columns]
+        if len(c) < 5:
+            continue
+        nh = nh_all.loc[dates, c]
+        listed = piv["close"].loc[dates, c].notna()
+        rows.append(pd.DataFrame({
+            "日期": dates.strftime("%Y-%m-%d"), "類型": kind, "板塊": g,
+            "家數": listed.sum(axis=1).values,
+            "創高": nh.sum(axis=1).values,
+            "創高股平均漲跌%": pct.loc[dates, c].where(nh).mean(axis=1).round(2).values,
+            "成交額比": (dv5.loc[dates, c].sum(axis=1) / dv50.loc[dates, c].sum(axis=1)).round(2).values,
+            "RS中位數": rs.loc[dates, c].median(axis=1).round(1).values,
+            "5日漲幅%": (panels["adj"].loc[dates, c] / panels["adj"].shift(5).loc[dates, c] - 1)
+            .mean(axis=1).mul(100).round(2).values,
+        }))
+    if not rows:
+        return None
+    df = pd.concat(rows, ignore_index=True)
+    df["RS排名"] = df.groupby(["日期", "類型"])["RS中位數"].rank(ascending=False, method="min")
+    df["RS百分位"] = df.groupby(["日期", "類型"])["RS中位數"].rank(pct=True).round(3)
+    price = (df["創高"] >= SIG_NH) & (df["創高股平均漲跌%"] > 0)
+    money = df["成交額比"] >= SIG_DVR
+    df["價格訊號"], df["資金訊號"] = price, money
+    df["主流"] = price & money
+    df["醞釀"] = money & (df["創高"] < 2)
+    df["啟動"] = price & ~money
+    # 排名變化（正數＝進步）：1 週、1 個月、3 個月、6 個月前（J Law：和上週、3 個月前、6 個月前比）
+    piv_rank = df.pivot_table(index="日期", columns=["類型", "板塊"], values="RS排名").sort_index()
+    for n, name in ((5, "排名1週進步"), (21, "排名1月進步"), (63, "排名3月進步"), (126, "排名6月進步")):
+        ch = (piv_rank.shift(n) - piv_rank).stack(["類型", "板塊"], future_stack=True).rename(name)
+        df = df.merge(ch.reset_index(), on=["日期", "類型", "板塊"], how="left")
+    df.to_csv(GROUP_SIG_CSV, index=False, encoding="utf-8-sig")
+    return df
+
+
 MA_BREADTH = (20, 50, 200)
 BREADTH_GROUPS = {"全部": None, "NYSE": ("NYSE", "AMEX", "NYSE ARCA", "BATS"), "Nasdaq": ("NASDAQ",)}
 
@@ -649,6 +700,26 @@ def main():
         util = pd.DataFrame(columns=["分級", "代號", "名稱"])
 
     breadth = market_breadth(piv, panels, idx)
+
+    # 報告用的資料檔
+    groups = {}
+    if industry is not None:
+        for c, g in industry.dropna().items():
+            groups.setdefault(("產業", g), []).append(c)
+    if sectors is not None:
+        for c, g in zip(sectors["代號"], sectors["板塊"]):
+            groups.setdefault(("主題", g), []).append(c)
+    gs = group_signals(groups, panels, piv)
+    if gs is not None:
+        today = gs[gs["日期"] == gs["日期"].max()]
+        print(f"\n板塊訊號（{today['日期'].iloc[0]}）：主流 {int(today['主流'].sum())}、醞釀 {int(today['醞釀'].sum())}、"
+              f"啟動 {int(today['啟動'].sum())}")
+        print(today[today["主流"]][["類型", "板塊", "家數", "創高", "成交額比", "RS排名"]].to_string(index=False))
+    full.assign(資料日期=latest).to_csv(os.path.join(DATA, "stocks_today.csv"), index=False, encoding="utf-8-sig")
+    if util is not None:
+        util.to_csv(os.path.join(DATA, "utility_today.csv"), index=False, encoding="utf-8-sig")
+    with open(os.path.join(DATA, "utility_note.txt"), "w", encoding="utf-8") as f:
+        f.write(note)
     write_excel(sec, cand, ind, full, latest, breadth, util, note, newhigh, vcp)
 
     print(f"計算 RS 的股票：{full['RS評分'].notna().sum()} 檔；符合必要條件：{len(cand)} 檔")

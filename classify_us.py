@@ -61,7 +61,8 @@ def nasdaq_industry():
         sym = str(x.get("symbol", "")).strip()
         if not sym or "^" in sym:
             continue
-        out[norm_code(sym)] = (str(x.get("sector") or "").strip(), str(x.get("industry") or "").strip())
+        out[norm_code(sym)] = (str(x.get("sector") or "").strip(), str(x.get("industry") or "").strip(),
+                               str(x.get("ipoyear") or "").strip())
     return out
 
 
@@ -75,7 +76,7 @@ def update_industry():
     hit = 0
     for c, v in st.items():
         if c in ind and (ind[c][0] or ind[c][1]):
-            v["sector"], v["industry"] = ind[c]
+            v["sector"], v["industry"], v["ipo_year"] = ind[c]
             hit += 1
     save_stocks(st)
     n_ind = len({v["industry"] for v in st.values() if v.get("industry")})

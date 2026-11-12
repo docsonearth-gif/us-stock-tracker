@@ -85,7 +85,7 @@ def update_universe():
     new = {}
     for k, v in cur.items():
         o = old.get(k, {})
-        new[k] = {**v, "sector": o.get("sector", ""), "industry": o.get("industry", ""),
+        new[k] = {**v, "sector": o.get("sector", ""), "industry": o.get("industry", ""), "ipo_year": o.get("ipo_year", ""),
                   "source": src, "first_seen": o.get("first_seen") or today}
     new = {k: v for k, v in new.items() if not BAD_SUFFIX.search(k)}
     added = sorted(set(new) - set(old))

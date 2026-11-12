@@ -14,6 +14,27 @@
 
 ---
 
+## 每日報告（PDF）
+
+`report/美股每日報告.pdf`（最新）、`report/archive/YYYY-MM-DD.pdf`（每天一份）；同步到 Google Drive「美股每日資料」。
+
+順序同台股：**大盤 → 板塊 → 個股**。規則依美股回測（`data/backtest_report_us.md`）定案：
+
+| 項目 | 規則 |
+|---|---|
+| 主流 | 創 52 週新高 ≥ 3 檔且創高股平均收紅＋板塊成交額比（5 日均 ÷ 50 日均）≥ 1.3（產業、主題都看） |
+| 醞釀 | 成交額比 ≥ 1.3、創高 < 2（只列主題；產業回測沒有優勢） |
+| 啟動 | 創高 ≥ 3 且收紅、成交額還沒放大 |
+| 尾聲／退潮 | 前 4 個交易日曾是主流，今天只剩一項／兩項都沒有 |
+| 產業排名 | RS 中位數排名，和 1 週、3 個月、6 個月前比（J Law） |
+| 候選股 | 第②階段＋RS ≥ 85＋股價 ≥ 12＋50 日均成交額 ≥ 2,000 萬美元，且在主流板塊或 RS 前 20% 產業；主流優先，再依加分項數、RS 排序，列前 15 |
+| 加分項 | EPS≥20%、EPS 加速、轉盈、營收≥20% 且加速（SEC 財報）、強勢 IPO（近 3 年上市） |
+| 財報日 | Nasdaq 財報日曆；7 天內標 ⚠ |
+
+不放 VCP、RS 線、新晉 RS90 等個股訊號（同台股，這些在 Excel 裡）。門檻可用 `SIG_NEW_HIGHS`、`SIG_DOLLAR_VOL_RATIO`、`MIN_RS`、`MIN_PRICE` 調整。
+
+SEC 要求連線帶聯絡方式；若基本面一直空白，在 repo Secrets 加 `SEC_USER_AGENT`（例如「Your Name your@email.com」）。
+
 ## 什麼時候更新
 
 | 台北時間 | 內容 |
@@ -54,7 +75,7 @@ Bulk API 的報酬率＝(收盤＋除息股利) ÷ (前一日收盤 ÷ 分割比
 | 大盤廣度 | 近 60 天：新高／新低、新高股收紅收黑與「新高大跌≥5%」、第②階段比例、站上 20／50／200MA 比例（全部／NYSE／Nasdaq）、S&P 與 Nasdaq 出貨日、指數廣度背離、市場狀態 |
 | 52週新高 | 當天創 52 週新高的股票，依成交額排序 |
 | Utility Screen | S&P 500 距高點 21–200 個交易日才有名單 |
-| 必要條件候選 | 第②階段＋RS ≥ 80＋股價 ≥ 10 美元＋50 日均成交額 ≥ 2,000 萬美元 |
+| 必要條件候選 | 第②階段＋RS ≥ 85＋股價 ≥ 12 美元＋50 日均成交額 ≥ 2,000 萬美元（J Law 美股條件） |
 | VCP先決條件 | 同 TradingView `trend_template.pine`（不看 150MA） |
 | 全部股票 | 每檔普通股的 RS、短期 RS、第②階段、距高點、距 50 日線、RSI14、成交額 |
 
@@ -115,6 +136,9 @@ Bulk API 的報酬率＝(收盤＋除息股利) ÷ (前一日收盤 ÷ 分割比
 | `mm_us.py`／`mm_config.py` | Market Monitor |
 | `etf_us.py` | ETF 強度與 RSI 熱圖 |
 | `heatmap.py` | 自訂板塊 RSI 熱圖 |
+| `report_us.py` | 每日報告 PDF |
+| `fundamentals_us.py` | 候選股的 SEC 季報加分項、財報日曆 |
+| `tools/backtest_us.py` | 回測（用 Releases 的長歷史） |
 | `repair_volume.py` | 一次性：用 Bulk API 重抓歷史成交量（修正存檔錯誤） |
 | `backfill_eodhd.py` | EODHD 回補：`working`（兩年，每日用）／`long`（2014 起＋下市股，回測用） |
 | `rs_us.py` | RS、廣度、Utility Screen、Excel |

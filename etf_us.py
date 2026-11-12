@@ -149,6 +149,7 @@ def main():
         return 1
     adj.round(4).to_csv(CLOSE_CSV, index_label="date")
     df, rsi, T = strength(items, adj, close)
+    df.assign(資料日期=f"{T:%Y-%m-%d}").to_csv(os.path.join(DATA, "etf_strength.csv"), index=False, encoding="utf-8-sig")
     write(df, rsi, items, T)
     show = df.sort_values("RS(清單內)", ascending=False)
     print(show.head(12)[["群組", "代號", "名稱", "RSI14", "1月%", "3月%", "RS(清單內)"]].to_string(index=False))
