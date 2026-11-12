@@ -590,13 +590,147 @@ def market_breadth(piv, panels, idx):
     return df
 
 
+# ---------- 做空觀察（Notion「沽空」筆記的選股條件；只篩選，進場時機自己判斷） ----------
+
+SW_TOP_N = int(os.getenv("SHORT_TOP_N", "1000"))          # 排除小型股：50 日均成交額排名前幾名
+SW_MIN_PRICE = float(os.getenv("SHORT_MIN_PRICE", "12"))  # 美元
+SW_LEADER_RS = int(os.getenv("SHORT_LEADER_RS", "80"))    # 過去一年 RS 曾達到
+SW_BREAK_DAYS = int(os.getenv("SHORT_BREAK_DAYS", "60"))  # 幾天內曾收在 200MA 之下
+SW_RS_DROP = int(os.getenv("SHORT_RS_DROP", "5"))         # RS 比 21 天前至少低幾分（RS 持續往下）
+
+
+def index_failed_rally(s):
+    """指數反彈到下彎 50MA 或 20MA 失敗（只有收盤價，用收盤判斷）。回傳每天 True/False。"""
+    ma20 = s.rolling(20).mean()
+    out = pd.Series(False, index=s.index)
+    for n in (50, 20):
+        ma = s.rolling(n).mean()
+        touched = (s / ma).rolling(5, min_periods=1).max() >= 0.98
+        out |= ((ma < ma.shift(10)) & touched & (s < ma) & (s < ma20) & (s < s.shift(1))).fillna(False)
+    return out
+
+
+def index_short_note(s, name):
+    if s is None or s.notna().sum() < 210:
+        return f"{name}：資料不足"
+    s = s.dropna()
+    ma200 = s.rolling(200).mean()
+    T = s.index[-1]
+    pos = "在 200MA 之下" if s[T] < ma200[T] else "在 200MA 之上"
+    slope = "200MA 下彎" if ma200[T] < ma200.shift(20)[T] else "200MA 上揚"
+    fr = index_failed_rally(s)
+    recent = fr.tail(5)
+    tag = ""
+    if recent.any():
+        tag = f"｜⚠ 近 5 日出現指數反彈失敗（{recent[recent].index[-1]:%m-%d}）"
+        if s[T] >= ma200[T]:
+            tag += "，但指數仍在 200MA 之上（回測無優勢）"
+    return f"{name} {pos}（{(s[T] / ma200[T] - 1) * 100:+.1f}%）、{slope}{tag}"
+
+
+def load_earnings():
+    p = os.path.join(DATA, "earnings.csv")
+    if not os.path.exists(p):
+        return None
+    e = pd.read_csv(p, dtype=str, encoding="utf-8-sig")
+    e["date"] = pd.to_datetime(e["date"], errors="coerce")
+    return e.dropna(subset=["date"]).sort_values("date").groupby("code")["date"].first()
+
+
+def short_watch(full, panels, piv, spx):
+    """前領導股做頭、跌破 200MA 的大型＋中型股。只篩選，不給進場訊號。"""
+    adj, ah, rs = panels["adj_ff"], panels["ahigh"], panels["rs"]
+    ma50, ma200 = panels["ma50"], panels["ma200"]
+    close = piv["close"]
+    T = adj.index[-1]
+    dv50 = piv["turnover"].tail(50).mean()
+    rank = dv50.where(close.loc[T].notna()).rank(ascending=False)
+    hi252 = ah.tail(252).max()
+    c = adj.loc[T]
+
+    w = pd.DataFrame(index=adj.columns)
+    w["一年RS最高"] = rs.tail(252).max()
+    w["RS 21日前"] = rs.shift(21).loc[T]
+    w["成交額排名"] = rank
+    w["52週高點距今(天)"] = ah.tail(252).apply(lambda x: len(x) - 1 - int(np.nanargmax(x.values)) if x.notna().any() else np.nan)
+    w["距52週高點%"] = ((c / hi252 - 1) * 100).round(1)
+    w["距200日線%"] = ((c / ma200.loc[T] - 1) * 100).round(1)
+    w["距50日線%"] = ((c / ma50.loc[T] - 1) * 100).round(1)
+    w["50MA向下"] = ma50.loc[T] < ma50.shift(10).loc[T]
+    w["200MA向下"] = ma200.loc[T] < ma200.shift(20).loc[T]
+    w["50MA<200MA"] = ma50.loc[T] < ma200.loc[T]
+    below = (adj < ma200).tail(SW_BREAK_DAYS)
+    w["近期收在200MA下天數"] = below.sum()
+    # 從下面反彈上來：近 15 日曾收在 200MA × 0.97 以下，近 5 日最高價又碰到 200MA × 0.98
+    w["近5日反彈到200MA"] = (((ah / ma200).tail(5).max() >= 0.98)
+                          & ((adj / ma200).tail(15).min() < 0.97) & (c < ma200.loc[T]))
+    w["參考止損(200MA×1.045)"] = (ma200.loc[T] * 1.045).round(2)
+    w["止損距離%"] = ((ma200.loc[T] * 1.045 / c - 1) * 100).round(1)
+    if spx is not None and spx.notna().any():
+        line = adj.div(spx, axis=0)
+        w["RS線比21日前低"] = (line.loc[T] < line.shift(21).loc[T]) & (line.loc[T] < line.shift(10).loc[T])
+    else:
+        w["RS線比21日前低"] = True
+    w.index.name = "代號"
+
+    keep = ["代號", "名稱", "市場", "產業別", "自訂板塊", "收盤", "RS評分", "50日均成交額(百萬美元)"]
+    df = full[[k for k in keep if k in full.columns]].merge(w.reset_index(), on="代號", how="left")
+    cond = ((df["成交額排名"] <= SW_TOP_N) & (df["收盤"] >= SW_MIN_PRICE)
+            & (df["一年RS最高"] >= SW_LEADER_RS)
+            & (df["52週高點距今(天)"] >= 21)
+            & df["RS線比21日前低"] & (df["RS評分"] <= df["RS 21日前"] - SW_RS_DROP)
+            & df["50MA向下"]
+            & (df["近期收在200MA下天數"] >= 1))
+    df = df[cond.fillna(False)].copy()
+
+    earn = load_earnings()
+    if earn is not None:
+        df["下次財報"] = df["代號"].map(earn).dt.strftime("%Y-%m-%d")
+        soon = df["代號"].map(earn) <= T + pd.Timedelta(days=10)
+    else:
+        df["下次財報"], soon = "", pd.Series(False, index=df.index)
+
+    # 已站回 200MA 的不列（筆記：站上 200MA 必須離場）
+    df = df[df["距200日線%"] < 0].copy()
+
+    def status(r):
+        if r["近5日反彈到200MA"]:
+            return "反彈到200MA附近"
+        if r["近期收在200MA下天數"] <= 3:
+            return "剛跌破200MA"
+        return "在200MA之下"
+    df["狀態"] = df.apply(status, axis=1)
+    notes = []
+    for _, r in df.iterrows():
+        n = []
+        if r["狀態"] == "剛跌破200MA":
+            n.append("筆記：第一次跌破不空，等反彈")
+        if r["距50日線%"] <= -15:
+            n.append("已大幅延伸，勿追空")
+        if r["止損距離%"] > 10:
+            n.append("離200MA太遠，止損難設")
+        if r["200MA向下"]:
+            n.append("200MA向下（中段做空）")
+        notes.append("、".join(n))
+    df["備註"] = notes
+    sm = soon.reindex(df.index).fillna(False).astype(bool)
+    df.loc[sm, "備註"] = ("⚠ 10天內財報、" + df.loc[sm, "備註"]).str.rstrip("、")
+    order = {"反彈到200MA附近": 0, "在200MA之下": 1, "剛跌破200MA": 2}
+    df = df.sort_values(["狀態", "止損距離%"], key=lambda s: s.map(order) if s.name == "狀態" else s)
+    cols = ["狀態", "代號", "名稱", "產業別", "自訂板塊", "收盤", "RS評分", "RS 21日前", "一年RS最高",
+            "距200日線%", "距50日線%", "50MA<200MA", "200MA向下", "近期收在200MA下天數", "52週高點距今(天)",
+            "距52週高點%", "參考止損(200MA×1.045)", "止損距離%", "下次財報", "成交額排名", "50日均成交額(百萬美元)", "備註"]
+    return df[[k for k in cols if k in df.columns]]
+
+
 # ---------- Excel ----------
 
 RS_COLOR_COLS = ("RS評分", "RS中位數", "板塊RSI", "RSI14", "RS 1月中位數", *PERIOD_RS,
                  "綜合分", "自高點RS", f"自高點RS {UT_SMOOTH}日均", "修正期RS", "自低點RS", "年RS")
 
 
-def write_excel(sec, cand, ind, full, latest, breadth=None, util=None, util_note="", newhigh=None, vcp=None):
+def write_excel(sec, cand, ind, full, latest, breadth=None, util=None, util_note="", newhigh=None, vcp=None,
+                short=None, short_note=""):
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.formatting.rule import ColorScaleRule
     from openpyxl.utils import get_column_letter
@@ -614,6 +748,8 @@ def write_excel(sec, cand, ind, full, latest, breadth=None, util=None, util_note
             sheets.append(("VCP先決條件", vcp))
         if ind is not None:
             sheets.append(("產業強度", ind))
+        if short is not None:
+            sheets.append(("做空觀察", short))
         sheets.append(("全部股票", full))
         if newhigh is not None:
             sheets.insert(0, ("52週新高", newhigh))
@@ -625,11 +761,13 @@ def write_excel(sec, cand, ind, full, latest, breadth=None, util=None, util_note
             title = f"資料日期 {latest}"
             if name == "Utility Screen" and util_note:
                 title += f"｜{util_note}"
+            if name == "做空觀察" and short_note:
+                title += f"｜{short_note}"
             ws.cell(row=1, column=1, value=title).font = Font(name="Arial", bold=True)
             for c in ws[2]:
                 c.fill, c.font = head_fill, head_font
                 c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-            ws.freeze_panes = "C3" if name != "Utility Screen" else "D3"
+            ws.freeze_panes = "D3" if name in ("Utility Screen", "做空觀察") else "C3"
             for i, col in enumerate(df.columns, 1):
                 q = df[col].map(lambda v: len(str(v))).quantile(0.9) if len(df) else 4
                 width = max(8, min(36, int(q * 1.8) + 2, len(str(col)) * 2 + 2))
@@ -720,7 +858,11 @@ def main():
         util.to_csv(os.path.join(DATA, "utility_today.csv"), index=False, encoding="utf-8-sig")
     with open(os.path.join(DATA, "utility_note.txt"), "w", encoding="utf-8") as f:
         f.write(note)
-    write_excel(sec, cand, ind, full, latest, breadth, util, note, newhigh, vcp)
+    short = short_watch(full, panels, piv, spx)
+    short_note = (index_short_note(spx, "S&P 500") + "｜只篩選（前領導股做頭＋跌破 200MA，已站回 200MA 不列），進場時機自己判斷；"
+                  "回測：個股做空自動化無優勢，見 Project 反向RS做空.md")
+    short.to_csv(os.path.join(DATA, "short_watch.csv"), index=False, encoding="utf-8-sig")
+    write_excel(sec, cand, ind, full, latest, breadth, util, note, newhigh, vcp, short, short_note)
 
     print(f"計算 RS 的股票：{full['RS評分'].notna().sum()} 檔；符合必要條件：{len(cand)} 檔")
     show = [c for c in ["52週新高", "52週新低", "收黑比例%", "第②階段比例%", "全部站上50MA%",
@@ -736,6 +878,7 @@ def main():
           .round(1).to_string(index=False))
     print(f"\n今日創 52 週新高：{len(newhigh)} 檔；符合 VCP 先決條件：{len(vcp)} 檔")
     print(f"\n{note}")
+    print(f"\n做空觀察：{len(short)} 檔（反彈到200MA附近 {int((short['狀態'] == '反彈到200MA附近').sum())}）｜{short_note}")
     if util is not None and len(util):
         print(f"Utility Screen 符合 {len(util)} 檔（A {int((util['分級'] == 'A').sum())}、"
               f"B {int((util['分級'] == 'B').sum())}、C {int((util['分級'] == 'C').sum())}），前 15 名：")
