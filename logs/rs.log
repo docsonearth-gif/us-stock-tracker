@@ -26,21 +26,21 @@
 
 必要條件候選前 15 名：
   代號                        名稱  RS評分  距52週高點%  近10日創高次數
-CDNA                CareDx Inc  99.0    -10.7         1
 MRNA               Moderna Inc  99.0    -11.4         4
+CDNA                CareDx Inc  99.0    -10.7         1
 ETON  Eton Pharmaceuticals Inc  99.0     -3.2         2
  KOD       Kodiak Sciences Inc  99.0     -2.6         3
   SG            Sweetgreen Inc  98.0     -7.3         5
-ORKA  Oruka Therapeutics, Inc.  98.0     -7.2         0
 MSGK  MSG Knickerbockers Corp.  98.0     -2.8         5
-ABSI                Absci Corp  98.0    -19.3         1
-FIGS                  Figs Inc  98.0     -1.5         5
 SYRE   Spyre Therapeutics Inc.  98.0     -3.5         1
  SLN  Silence Therapeutics PLC  98.0     -0.5         0
-PLSE     Pulse Biosciences Inc  98.0     -3.3         1
-XERS Xeris Pharmaceuticals Inc  98.0     -0.3         5
+REPL       Replimune Group Inc  98.0     -7.5         8
+ORKA  Oruka Therapeutics, Inc.  98.0     -7.2         0
 HNGE        Hinge Health, Inc.  98.0     -3.7         5
-SDGR           Schrodinger Inc  98.0     -7.3         2
+XNCR                Xencor Inc  98.0     -1.6         6
+XERS Xeris Pharmaceuticals Inc  98.0     -0.3         5
+ABSI                Absci Corp  98.0    -19.3         1
+FIGS                  Figs Inc  98.0     -1.5         5
 
 今日創 52 週新高：122 檔；符合 VCP 先決條件：794 檔
 
@@ -62,4 +62,4 @@ Utility Screen 符合 267 檔（A 12、B 220、C 35），前 15 名：
  B GKOS                Glaukos Corp 90.7   98.0   97.0   84.0 97.0    20.3
  B ARHS                  Arhaus Inc 90.7   97.0   96.0   84.0 96.0    19.1
  B   SG              Sweetgreen Inc 89.2   97.0   95.0   82.0 98.0    15.4
-已輸出 /home/claude/us-stock-tracker/板塊RSI_熱圖_美股.xlsx（60 個交易日 × 38 個板塊）
+已輸出 /home/runner/work/us-stock-tracker/us-stock-tracker/板塊RSI_熱圖_美股.xlsx（60 個交易日 × 38 個板塊）
