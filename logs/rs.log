@@ -1,6 +1,11 @@
 資料：551 個交易日、5653 檔，最新 2026-11-11
 自訂板塊：38 個板塊、1379 檔股票
-計算 RS 的股票：4668 檔；符合必要條件：290 檔
+
+板塊訊號（2026-11-11）：主流 0、醞釀 23、啟動 17
+Empty DataFrame
+Columns: [類型, 板塊, 家數, 創高, 成交額比, RS排名]
+Index: []
+計算 RS 的股票：4668 檔；符合必要條件：213 檔
 
 大盤廣度（最近 5 日）：
             52週新高  52週新低  收黑比例%  第②階段比例%  全部站上50MA%  S&P 25日出貨日數  Nasdaq 25日出貨日數  市場狀態 指數廣度背離
@@ -26,21 +31,21 @@
 
 必要條件候選前 15 名：
   代號                        名稱  RS評分  距52週高點%  近10日創高次數
-MRNA               Moderna Inc  99.0    -11.4         4
 CDNA                CareDx Inc  99.0    -10.7         1
+MRNA               Moderna Inc  99.0    -11.4         4
 ETON  Eton Pharmaceuticals Inc  99.0     -3.2         2
  KOD       Kodiak Sciences Inc  99.0     -2.6         3
   SG            Sweetgreen Inc  98.0     -7.3         5
+ORKA  Oruka Therapeutics, Inc.  98.0     -7.2         0
 MSGK  MSG Knickerbockers Corp.  98.0     -2.8         5
+FIGS                  Figs Inc  98.0     -1.5         5
 SYRE   Spyre Therapeutics Inc.  98.0     -3.5         1
  SLN  Silence Therapeutics PLC  98.0     -0.5         0
-REPL       Replimune Group Inc  98.0     -7.5         8
-ORKA  Oruka Therapeutics, Inc.  98.0     -7.2         0
-HNGE        Hinge Health, Inc.  98.0     -3.7         5
-XNCR                Xencor Inc  98.0     -1.6         6
+PLSE     Pulse Biosciences Inc  98.0     -3.3         1
 XERS Xeris Pharmaceuticals Inc  98.0     -0.3         5
-ABSI                Absci Corp  98.0    -19.3         1
-FIGS                  Figs Inc  98.0     -1.5         5
+HNGE        Hinge Health, Inc.  98.0     -3.7         5
+SDGR           Schrodinger Inc  98.0     -7.3         2
+REPL       Replimune Group Inc  98.0     -7.5         8
 
 今日創 52 週新高：122 檔；符合 VCP 先決條件：794 檔
 
