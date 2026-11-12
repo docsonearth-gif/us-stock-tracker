@@ -211,8 +211,10 @@ def eodhd_bulk(day, prev_rows):
 def fix_returns(day, rows, prev_rows, split_codes):
     """分割或大漲大跌的股票：抓該檔近 10 天日線，用 adjusted_close 算當天報酬（和回補時同一個方法）。"""
     stocks = load_stocks()
+    # 分割清單上的股票，公式已經用了分割比例；只有算出來仍超過 ±35%（或算不出來）才重算。
+    # 分割當天 EODHD 的還原價有時還沒調整，所以兩種算法取變動較小的那個。
     cand = [c for c, r in rows.items() if c in stocks and c in prev_rows and
-            (c in split_codes or r["ret"] is None or abs(r["ret"]) > 0.35)]
+            (r["ret"] is None or abs(r["ret"]) > 0.35)]
     if not cand:
         return
     start = (datetime.strptime(day, "%Y-%m-%d") - timedelta(days=12)).date().isoformat()
@@ -224,6 +226,8 @@ def fix_returns(day, rows, prev_rows, split_codes):
             continue
         if len(bars) >= 2 and bars[-1]["date"] == day and bars[-2]["adjusted_close"] > 0:
             new = bars[-1]["adjusted_close"] / bars[-2]["adjusted_close"] - 1
+            if rows[c]["ret"] is not None and abs(new) >= abs(rows[c]["ret"]):
+                continue
             if rows[c]["ret"] is None or abs(new - rows[c]["ret"]) > 0.005:
                 fixed.append(f"{c} {(rows[c]['ret'] or 0) * 100:+.1f}%→{new * 100:+.1f}%")
             rows[c]["ret"] = new

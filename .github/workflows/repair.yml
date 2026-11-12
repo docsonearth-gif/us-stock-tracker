@@ -1,9 +1,6 @@
 name: 修正歷史成交量（一次性）
 
 on:
-  schedule:
-    # 一次性：EODHD 每日額度在 UTC 00:00 歸零；11/12 00:20 UTC（台北 08:20）接著修剩下的日子
-    - cron: "20 0 12 11 *"
   push:
     paths: ["repair.txt"]
   workflow_dispatch: {}
