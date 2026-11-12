@@ -1265,6 +1265,7 @@ CRL,Charles River Laboratories,NYSE,Health Care,Biotechnology: Commercial Physic
 CRM,Salesforce Inc,NYSE,Technology,Computer Software: Prepackaged Software,2004,eodhd,2026-11-11
 CRMD,CorMedix Inc,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,,eodhd,2026-11-11
 CRML,Critical Metals Corp. Ordinary Shares,NASDAQ,Basic Materials,Metal Mining,,eodhd,2026-11-11
+CRMN,CRMN,NASDAQ,,,,eodhd,2026-11-12
 CRMT,Americas Car-Mart Inc,NASDAQ,Consumer Discretionary,Retail-Auto Dealers and Gas Stations,,eodhd,2026-11-11
 CRNC,Cerence Inc,NASDAQ,Technology,Computer Software: Prepackaged Software,,eodhd,2026-11-11
 CRNT,Ceragon Networks Ltd,NASDAQ,Technology,Radio And Television Broadcasting And Communications Equipment,,eodhd,2026-11-11
@@ -2830,7 +2831,6 @@ KOS,Kosmos Energy Ltd,NYSE,Energy,Oil & Gas Production,2011,eodhd,2026-11-11
 KOSS,Koss Corporation,NASDAQ,Consumer Staples,Consumer Electronics/Appliances,,eodhd,2026-11-11
 KPLT,Katapult Holdings Inc,NASDAQ,Consumer Discretionary,Diversified Commercial Services,2019,eodhd,2026-11-11
 KPRX,Kiora Pharmaceuticals Inc,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,,eodhd,2026-11-11
-KPTIQ,Karyopharm Therapeutics Inc,NASDAQ,,,,eodhd,2026-11-11
 KR,Kroger Company,NYSE,Consumer Staples,Food Chains,,eodhd,2026-11-11
 KRC,Kilroy Realty Corp,NYSE,Real Estate,Real Estate Investment Trusts,1997,eodhd,2026-11-11
 KREF,KKR Real Estate Finance Trust Inc,NYSE,Real Estate,Real Estate Investment Trusts,2017,eodhd,2026-11-11
@@ -3465,7 +3465,7 @@ NFE,New Fortress Energy LLC,NASDAQ,Utilities,Oil/Gas Transmission,2019,eodhd,202
 NFG,National Fuel Gas Company,NYSE,Utilities,Oil/Gas Transmission,,eodhd,2026-11-11
 NFGC,New Found Gold Corp,AMEX,Basic Materials,Precious Metals,2021,eodhd,2026-11-11
 NFLX,Netflix Inc,NASDAQ,Consumer Discretionary,Consumer Electronics/Video Chains,2002,eodhd,2026-11-11
-NG,NovaGold Resources Inc,AMEX,Basic Materials,Precious Metals,2003,eodhd,2026-11-11
+NG,NovaGold Corporation,AMEX,Basic Materials,Precious Metals,2003,eodhd,2026-11-11
 NGEN,NervGen Pharma Corp.,NASDAQ,Health Care,Biotechnology: Pharmaceutical Preparations,,eodhd,2026-11-11
 NGG,National Grid PLC ADR,NYSE,Utilities,Natural Gas Distribution,,eodhd,2026-11-11
 NGL,NGL Energy Partners LP,NYSE,Utilities,Natural Gas Distribution,2011,eodhd,2026-11-11
@@ -3737,6 +3737,7 @@ ONTO,Onto Innovation Inc,NYSE,Industrials,Industrial Machinery/Components,,eodhd
 OOMA,Ooma Inc,NYSE,Technology,EDP Services,2015,eodhd,2026-11-11
 OPAD,Offerpad Solutions Inc. Class A Common Stock,NYSE,Finance,Real Estate,,eodhd,2026-11-11
 OPAL,OPAL Fuels Inc,NASDAQ,Utilities,Natural Gas Distribution,2021,eodhd,2026-11-11
+OPAY,OPay Limited,NYSE,,,,eodhd,2026-11-12
 OPBK,OP Bancorp,NASDAQ,Finance,Major Banks,2018,eodhd,2026-11-11
 OPCH,Option Care Health Inc,NASDAQ,Health Care,Medical/Nursing Services,,eodhd,2026-11-11
 OPEN,Opendoor Technologies Inc,NASDAQ,Finance,Real Estate,,eodhd,2026-11-11

@@ -1,120 +1,113 @@
 ﻿狀態,代號,名稱,產業別,自訂板塊,收盤,RS評分,RS 21日前,一年RS最高,距200日線%,距50日線%,50MA<200MA,200MA向下,近期收在200MA下天數,52週高點距今(天),距52週高點%,參考止損(200MA×1.045),止損距離%,下次財報,成交額排名,50日均成交額(百萬美元),備註
-反彈到200MA附近,WCC,WESCO International Inc,Telecommunications Equipment,基礎建設,327.24,54.0,85.0,90.0,-0.4,-5.6,False,False,8,26,-15.8,343.17,4.9,,569.0,221.1,
-反彈到200MA附近,CSCO,Cisco Systems Inc,Computer Communications Equipment,人工智慧、電信,100.76,65.0,88.0,91.0,-0.8,-6.7,False,False,5,111,-22.1,106.1,5.3,2026-11-12,54.0,1936.8,⚠ 10天內財報
-反彈到200MA附近,SMTC,Semtech Corporation,Semiconductors,半導體,125.22,77.0,97.0,97.0,-0.9,-18.9,False,False,7,28,-38.0,132.08,5.5,2026-11-23,236.0,531.5,已大幅延伸，勿追空
-反彈到200MA附近,VG,"Venture Global, Inc.",Oil/Gas Transmission,油氣探勘,12.66,72.0,87.0,93.0,-1.0,-6.1,False,False,6,161,-27.9,13.37,5.6,,615.0,205.6,
-反彈到200MA附近,FTNT,Fortinet Inc,Computer peripheral equipment,資安、軟體,128.1,72.0,97.0,97.0,-1.6,-22.6,False,False,7,21,-35.0,136.11,6.3,,159.0,773.2,已大幅延伸，勿追空
-反彈到200MA附近,CORT,Corcept Therapeutics Incorporated,Biotechnology: Pharmaceutical Preparations,製藥,74.53,67.0,97.0,98.0,-2.2,-29.2,False,False,5,55,-41.0,79.65,6.9,,836.0,139.1,已大幅延伸，勿追空
-反彈到200MA附近,CLH,Clean Harbors Inc,Environmental Services,,290.02,59.0,74.0,80.0,-3.1,-7.0,False,False,8,74,-13.7,312.74,7.8,,800.0,150.4,
-反彈到200MA附近,DAVE,Dave Inc,Finance: Consumer Services,,281.96,72.0,89.0,96.0,-3.3,-17.8,False,False,5,80,-38.5,304.63,8.0,,925.0,112.5,已大幅延伸，勿追空
-反彈到200MA附近,KEYS,Keysight Technologies Inc,Industrial Machinery/Components,,305.64,68.0,92.0,94.0,-4.4,-9.0,False,False,10,26,-21.6,334.06,9.3,2026-11-19,312.0,411.0,⚠ 10天內財報
-反彈到200MA附近,FANG,Diamondback Energy Inc,Oil & Gas Production,油氣探勘,180.98,55.0,79.0,85.0,-4.6,-6.9,False,False,6,58,-16.6,198.23,9.5,,251.0,501.5,
-反彈到200MA附近,BMNR,"BitMine Immersion Technologies, Inc.",Finance: Consumer Services,軟體、網路新經濟,19.24,35.0,62.0,98.0,-6.4,-18.7,False,True,12,231,-54.3,21.47,11.6,,141.0,838.9,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-反彈到200MA附近,EGO,Eldorado Gold Corp,Precious Metals,,33.47,39.0,74.0,96.0,-7.8,-11.7,False,True,23,198,-34.2,37.93,13.3,,865.0,132.2,離200MA太遠，止損難設、200MA向下（中段做空）
-反彈到200MA附近,HIMS,Hims Hers Health Inc,Medical/Nursing Services,,20.81,28.0,36.0,81.0,-22.3,-25.5,False,True,18,251,-49.6,27.98,34.4,,413.0,321.4,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,DT,Dynatrace Holdings LLC,Computer Software: Prepackaged Software,軟體、人工智慧,44.24,57.0,93.0,94.0,-1.1,-21.9,False,False,5,21,-33.3,46.74,5.6,,300.0,433.1,已大幅延伸，勿追空
-在200MA之下,ASML,ASML Holding N.V. New York Registry Shares,Industrial Machinery/Components,,1534.42,58.0,83.0,93.0,-3.9,-7.9,False,False,11,94,-23.1,1669.28,8.8,,35.0,2534.1,
-在200MA之下,FCX,Freeport-McMoran Copper & Gold Inc,Metal Mining,銅礦、金屬礦業,62.12,61.0,86.0,90.0,-4.4,-9.9,False,False,10,54,-22.4,67.92,9.3,,153.0,798.8,
-在200MA之下,ROK,Rockwell Automation Inc,Industrial Machinery/Components,基礎建設、機器人與自動化,406.19,44.0,63.0,81.0,-4.5,-5.0,False,False,13,94,-18.1,444.4,9.4,,343.0,370.2,
-在200MA之下,SCCO,Southern Copper Corporation,Metal Mining,銅礦,172.61,52.0,85.0,94.0,-5.2,-9.8,False,False,10,56,-20.4,190.32,10.3,,579.0,218.0,離200MA太遠，止損難設
-在200MA之下,AVGO,Broadcom Inc,Semiconductors,人工智慧、網路新經濟、半導體、資料中心、機器人與自動化,345.22,35.0,49.0,91.0,-5.7,-0.1,True,True,53,112,-30.0,382.69,10.9,,13.0,8886.6,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,TKR,Timken Company,Metal Fabrications,,110.56,55.0,71.0,92.0,-5.9,-3.7,True,False,23,94,-24.3,122.72,11.0,,971.0,105.4,離200MA太遠，止損難設
-在200MA之下,UMC,United Microelectronics,Semiconductors,,16.08,87.0,97.0,98.0,-6.0,-23.3,False,False,9,97,-43.5,17.87,11.1,,500.0,254.1,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,BE,Bloom Energy Corp,Industrial Machinery/Components,電動車與自駕,209.47,63.0,95.0,99.0,-6.1,-14.6,False,False,13,97,-40.4,233.21,11.3,,21.0,4074.3,離200MA太遠，止損難設
-在200MA之下,FTI,TechnipFMC PLC,Oil and Gas Field Machinery,油服,65.39,57.0,84.0,94.0,-6.1,-7.1,False,False,11,48,-19.0,72.75,11.3,,606.0,208.7,離200MA太遠，止損難設
-在200MA之下,SMCI,Super Micro Computer Inc,Computer Manufacturing,AI 伺服器與網通、人工智慧、資料中心,30.43,30.0,84.0,92.0,-6.6,-17.7,False,False,11,113,-40.8,34.04,11.9,,72.0,1429.5,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,ADM,Archer-Daniels-Midland Company,Packaged Foods,,70.92,51.0,80.0,85.0,-6.8,-11.7,False,False,8,44,-20.1,79.55,12.2,,472.0,275.4,離200MA太遠，止損難設
-在200MA之下,AMBA,Ambarella Inc,Semiconductors,人工智慧、半導體、電動車與自駕,62.49,25.0,47.0,85.0,-7.0,-4.1,True,True,45,250,-35.4,70.22,12.4,2026-11-24,961.0,107.4,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,HOOD,Robinhood Markets Inc,Investment Bankers/Brokers/Service,網路新經濟、資本市場、金融科技、加密貨幣概念,84.58,36.0,54.0,96.0,-7.7,-19.2,False,True,14,232,-39.5,95.76,13.2,,45.0,2220.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,ESI,Element Solutions Inc,Major Chemicals,,34.05,45.0,75.0,92.0,-7.9,-2.3,True,False,35,100,-30.7,38.63,13.5,,798.0,150.8,離200MA太遠，止損難設
-在200MA之下,DAR,Darling Ingredients Inc,Packaged Foods,,54.18,61.0,89.0,93.0,-8.0,-10.1,False,False,15,58,-22.6,61.54,13.6,,835.0,139.3,離200MA太遠，止損難設
-在200MA之下,DDOG,Datadog Inc,Computer Software: Prepackaged Software,軟體、雲端、人工智慧、網路新經濟,184.38,43.0,96.0,96.0,-8.2,-24.6,False,False,6,22,-38.7,209.9,13.8,,132.0,880.6,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,NEU,NewMarket Corporation,Major Chemicals,,697.71,34.0,82.0,84.0,-8.4,-18.7,False,False,8,61,-28.7,795.85,14.1,,947.0,109.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,STM,STMicroelectronics NV ADR,Semiconductors,,46.26,74.0,83.0,97.0,-8.7,-6.5,True,False,20,112,-43.0,52.93,14.4,,265.0,482.6,離200MA太遠，止損難設
-在200MA之下,MRVL,Marvell Technology Group Ltd,Semiconductors,人工智慧、半導體、資料中心、光通訊,168.8,85.0,98.0,98.0,-9.3,-26.9,False,False,8,101,-48.8,194.53,15.2,2026-12-01,15.0,5210.3,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,VSH,Vishay Intertechnology Inc,Electrical Products,,29.14,80.0,91.0,98.0,-9.8,-4.7,True,False,21,101,-57.9,33.76,15.8,,924.0,113.0,離200MA太遠，止損難設
-在200MA之下,NOW,ServiceNow Inc,Computer Software: Prepackaged Software,軟體、雲端、人工智慧,102.76,34.0,79.0,91.0,-9.8,-23.1,False,True,10,230,-41.3,119.09,15.9,,52.0,1966.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,ALAB,"Astera Labs, Inc.",Semiconductors,半導體、光通訊,230.91,65.0,91.0,98.0,-10.1,-22.1,False,False,8,94,-53.8,268.42,16.2,,84.0,1310.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,DTM,DT Midstream Inc,Natural Gas Distribution,,119.0,39.0,53.0,80.0,-10.8,-3.7,True,False,58,96,-21.2,139.44,17.2,,890.0,122.4,離200MA太遠，止損難設
-在200MA之下,ON,ON Semiconductor Corporation,Semiconductors,半導體、電動車與自駕,73.62,51.0,73.0,96.0,-11.0,-0.6,True,False,56,112,-45.4,86.41,17.4,,138.0,849.2,離200MA太遠，止損難設
-在200MA之下,CGNX,Cognex Corporation,Industrial Machinery/Components,機器人與自動化,51.72,53.0,79.0,91.0,-11.2,-11.6,False,False,15,94,-28.9,60.89,17.7,,951.0,109.1,離200MA太遠，止損難設
-在200MA之下,HBM,Hudbay Minerals Inc.,Metal Mining,,21.94,38.0,80.0,97.0,-11.3,-12.2,False,False,21,113,-31.7,25.84,17.8,2026-11-12,949.0,109.6,⚠ 10天內財報、離200MA太遠，止損難設
-在200MA之下,AMAT,Applied Materials Inc,Semiconductors,,395.08,60.0,86.0,97.0,-11.3,-10.3,True,False,20,94,-46.5,465.68,17.9,2026-11-12,29.0,3056.8,⚠ 10天內財報、離200MA太遠，止損難設
-在200MA之下,GNRC,Generac Holdings Inc,Metal Fabrications,,194.0,41.0,69.0,92.0,-11.6,-2.0,True,False,50,97,-34.6,229.21,18.2,,488.0,263.5,離200MA太遠，止損難設
-在200MA之下,MTSI,MACOM Technology Solutions Holdings Inc,Semiconductors,半導體,249.86,43.0,92.0,95.0,-11.9,-7.2,True,False,28,117,-40.4,296.45,18.6,,295.0,438.3,離200MA太遠，止損難設
-在200MA之下,ARM,Arm Holdings plc American Depositary Shares,Semiconductors,,203.36,62.0,92.0,98.0,-12.3,-18.6,False,False,14,101,-55.1,242.4,19.2,,76.0,1398.2,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,FFIV,"F5, Inc.",Computer Communications Equipment,軟體,320.01,47.0,90.0,91.0,-12.4,-23.2,False,False,9,22,-33.8,381.91,19.3,,432.0,307.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,GOOGL,Alphabet Inc Class A,Computer Software: Programming Data Processing,雲端、人工智慧、機器人與自動化、電動車與自駕,293.45,34.0,69.0,92.0,-13.3,-11.0,True,True,20,123,-28.1,353.83,20.6,,12.0,10081.7,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,NBIS,Nebius Group N.V.,Computer Software: Programming Data Processing,電動車與自駕,154.69,55.0,89.0,98.0,-13.6,-21.9,False,False,18,100,-48.4,187.17,21.0,2026-11-12,22.0,3806.4,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,GOOG,Alphabet Inc Class C,Computer Software: Programming Data Processing,網路新經濟、太空、機器人與自動化,290.63,33.0,67.0,92.0,-13.6,-11.1,True,True,24,123,-28.1,351.7,21.0,,14.0,6509.9,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,SITM,Sitime Corporation,Semiconductors,半導體、電動車與自駕,472.56,36.0,89.0,97.0,-14.1,-15.0,False,False,21,128,-47.6,574.56,21.6,,416.0,319.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,EME,EMCOR Group Inc,Engineering & Construction,基礎建設,666.74,29.0,64.0,86.0,-14.4,-8.2,True,False,45,131,-29.9,814.32,22.1,,433.0,307.5,離200MA太遠，止損難設
-在200MA之下,GEV,GE Vernova LLC,Consumer Electronics/Appliances,AI 電力與發電,808.24,41.0,82.0,95.0,-14.9,-11.9,True,False,22,91,-32.4,992.74,22.8,,33.0,2667.6,離200MA太遠，止損難設
-在200MA之下,NVDA,NVIDIA Corporation,Semiconductors,人工智慧、網路新經濟、太空、半導體、資料中心、機器人與自動化、電動車與自駕,173.73,28.0,76.0,83.0,-14.9,-20.0,False,False,7,26,-28.6,213.38,22.8,2026-11-17,1.0,27633.6,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,SIMO,Silicon Motion Technology,Semiconductors,,183.65,67.0,95.0,98.0,-15.0,-22.4,False,False,13,100,-48.0,225.89,23.0,,613.0,205.9,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,ODFL,Old Dominion Freight Line Inc,Trucking Freight/Courier Services,運輸,170.5,39.0,50.0,87.0,-15.3,-4.9,True,False,51,108,-32.2,210.27,23.3,,364.0,354.6,離200MA太遠，止損難設
-在200MA之下,BWA,BorgWarner Inc,Auto Parts:O.E.M.,,51.26,30.0,75.0,92.0,-15.3,-13.1,True,False,22,112,-34.8,63.25,23.4,,762.0,158.8,離200MA太遠，止損難設
-在200MA之下,VIAV,Viavi Solutions Inc,Semiconductors,電信,33.0,58.0,95.0,98.0,-15.7,-9.4,True,False,27,135,-45.4,40.93,24.0,,586.0,216.8,離200MA太遠，止損難設
-在200MA之下,JBL,Jabil Inc.,Electrical Products,,258.89,32.0,80.0,91.0,-15.9,-11.1,True,False,27,102,-39.6,321.84,24.3,,327.0,392.7,離200MA太遠，止損難設
-在200MA之下,CYTK,Cytokinetics Inc,Biotechnology: Pharmaceutical Preparations,生技,58.53,29.0,35.0,92.0,-16.2,-9.7,True,True,42,94,-33.7,73.01,24.7,,870.0,131.7,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,FORM,FormFactor Inc,Semiconductors,,95.78,50.0,95.0,98.0,-16.3,-15.3,True,False,25,94,-40.2,119.57,24.8,,626.0,201.0,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,ORCL,Oracle Corporation,Computer Software: Prepackaged Software,軟體、雲端、人工智慧,128.38,22.0,32.0,82.0,-16.4,-6.5,True,True,60,114,-48.3,160.51,25.0,,17.0,5064.3,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,SANM,Sanmina Corporation,Electrical Products,,159.25,29.0,85.0,95.0,-16.6,-16.6,False,True,20,112,-44.8,199.51,25.3,,823.0,142.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,LRCX,Lam Research Corp,Industrial Machinery/Components,,235.88,40.0,87.0,97.0,-16.8,-15.8,True,False,20,94,-46.2,296.4,25.7,,31.0,2908.5,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,BKR,Baker Hughes Co,Oil and Gas Field Machinery,油服,49.41,29.0,65.0,87.0,-17.0,-11.4,True,False,43,138,-29.0,62.24,26.0,,279.0,463.7,離200MA太遠，止損難設
-在200MA之下,ONTO,Onto Innovation Inc,Industrial Machinery/Components,,215.06,37.0,83.0,96.0,-17.3,-14.0,True,False,23,94,-44.4,271.77,26.4,,514.0,247.8,離200MA太遠，止損難設
-在200MA之下,XP,Xp Inc,Investment Bankers/Brokers/Service,,15.385,35.0,96.0,97.0,-18.8,-29.9,False,False,21,22,-53.0,19.79,28.6,2026-11-16,434.0,306.8,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,NVT,nVent Electric PLC,Industrial Machinery/Components,,116.73,29.0,85.0,92.0,-19.3,-20.4,False,False,18,100,-36.6,151.13,29.5,,346.0,367.4,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,FUTU,Futu Holdings Ltd,Investment Bankers/Brokers/Service,,98.0,22.0,34.0,89.0,-19.7,-9.2,True,True,60,210,-47.4,127.56,30.2,2026-11-19,923.0,113.5,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,RMBS,Rambus Inc,Semiconductors,半導體,85.36,26.0,48.0,95.0,-20.0,-7.8,True,True,55,112,-51.0,111.47,30.6,,624.0,201.6,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,LITE,Lumentum Holdings Inc,Telecommunications Equipment,電信、光通訊,648.06,74.0,98.0,99.0,-20.2,-26.1,False,False,10,23,-43.3,848.13,30.9,,18.0,4656.9,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,AGI,Alamos Gold Inc,Precious Metals,,30.0,28.0,39.0,92.0,-20.3,-8.3,True,True,59,177,-45.7,39.32,31.1,,907.0,116.5,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,FSLY,"Fastly, Inc. Class A Common Stock",Computer Software: Prepackaged Software,雲端,17.26,65.0,97.0,98.0,-20.9,-26.9,False,False,8,151,-50.4,22.79,32.0,,737.0,167.0,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,COHR,Coherent Corp,Electronic Components,光通訊、電動車與自駕,234.51,35.0,90.0,98.0,-21.0,-12.1,True,False,29,112,-46.7,310.1,32.2,,49.0,2045.4,離200MA太遠，止損難設
-在200MA之下,STX,Seagate Technology PLC,Electronic Components,記憶體與儲存、人工智慧,551.72,56.0,96.0,98.0,-21.1,-26.5,False,False,16,101,-51.7,730.77,32.5,,23.0,3744.1,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,MCHP,Microchip Technology Inc,Semiconductors,半導體、資料中心,62.13,30.0,53.0,88.0,-21.2,-16.2,True,False,49,129,-40.7,82.4,32.6,,147.0,825.8,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,ALGM,Allegro Microsystems Inc,Semiconductors,半導體、電動車與自駕,32.11,28.0,41.0,95.0,-21.2,-6.0,True,False,60,94,-55.3,42.58,32.6,,997.0,102.8,離200MA太遠，止損難設
-在200MA之下,CRDO,Credo Technology Group Holding Ltd,Semiconductors,半導體、光通訊,141.41,22.0,73.0,97.0,-21.8,-18.5,True,False,31,100,-54.2,188.94,33.6,,63.0,1598.8,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,HL,Hecla Mining Company,Mining & Quarrying of Nonmetallic Minerals (No Fuels),金屬礦業,14.12,23.0,48.0,98.0,-21.9,-15.6,True,True,43,201,-58.7,18.88,33.7,,229.0,549.3,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,GFS,Globalfoundries Inc,Semiconductors,,42.85,32.0,56.0,95.0,-21.9,-6.1,True,False,60,118,-53.5,57.34,33.8,,550.0,230.7,離200MA太遠，止損難設
-在200MA之下,CMI,Cummins Inc,Industrial Machinery/Components,,463.26,25.0,43.0,89.0,-22.3,-11.0,True,True,58,101,-37.0,623.1,34.5,,178.0,660.3,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,PAAS,Pan American Silver Corp.,Precious Metals,,39.34,27.0,46.0,95.0,-22.5,-13.0,True,True,50,201,-43.3,53.05,34.9,,701.0,175.2,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,DOCN,DigitalOcean Holdings Inc,Computer Software: Programming Data Processing,雲端,87.15,49.0,97.0,98.0,-22.6,-24.0,False,False,19,102,-53.5,117.66,35.0,,370.0,350.2,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,AKAM,Akamai Technologies Inc,Business Services,資安、雲端,86.68,24.0,61.0,92.0,-22.7,-13.4,True,True,51,126,-47.6,117.15,35.2,,200.0,593.1,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,GLW,Corning Incorporated,Telecommunications Equipment,,120.46,34.0,80.0,97.0,-22.8,-15.5,True,False,26,94,-55.6,163.13,35.4,,86.0,1293.1,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,TSEM,Tower Semiconductor Ltd,Semiconductors,,158.87,40.0,93.0,98.0,-22.9,-21.6,True,False,19,100,-50.3,215.23,35.5,,257.0,494.8,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,SNDK,Sandisk Corp,Electronic Components,記憶體與儲存,977.69,92.0,99.0,99.0,-23.5,-33.4,False,False,9,100,-58.5,1336.19,36.7,,7.0,14155.8,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,FLEX,Flex Ltd,Electrical Products,,78.97,31.0,89.0,97.0,-23.8,-21.4,True,False,21,112,-52.7,108.28,37.1,,278.0,464.0,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,KGC,Kinross Gold Corporation,Precious Metals,,21.47,23.0,34.0,96.0,-23.8,-13.3,True,True,45,201,-44.9,29.44,37.1,,652.0,193.3,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,VRT,Vertiv Holdings Co,Industrial Machinery/Components,AI 伺服器與網通,206.51,25.0,57.0,96.0,-23.9,-11.6,True,False,45,125,-45.6,283.59,37.3,,69.0,1506.8,離200MA太遠，止損難設
-在200MA之下,TER,Teradyne Inc,Electrical Products,太空、機器人與自動化,265.78,32.0,93.0,98.0,-24.1,-23.2,True,False,20,94,-45.5,365.76,37.6,,104.0,1080.5,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,AEIS,Advanced Energy Industries Inc,Industrial Machinery/Components,,231.6,25.0,65.0,97.0,-24.5,-10.0,True,True,60,142,-41.7,320.57,38.4,,783.0,154.7,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,AG,First Majestic Silver Corp,Precious Metals,,14.77,27.0,44.0,98.0,-24.8,-14.7,True,True,43,178,-53.8,20.54,39.0,,731.0,168.9,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,SPXC,"SPX Technologies, Inc.",Industrial Machinery/Components,基礎建設,153.86,19.0,28.0,82.0,-24.9,-9.9,True,True,60,97,-38.7,214.06,39.1,,921.0,114.2,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,CAT,Caterpillar Inc,Construction/Ag Equipment/Trucks,機器人與自動化,601.61,25.0,68.0,94.0,-25.3,-19.5,True,False,24,94,-43.7,841.06,39.8,,46.0,2188.8,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,KGS,"Kodiak Gas Services, Inc.",Natural Gas Distribution,油服,43.86,29.0,68.0,94.0,-25.6,-15.6,True,False,38,121,-43.1,61.58,40.4,,987.0,103.8,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,WDC,Western Digital Corporation,Electronic Components,記憶體與儲存,313.31,47.0,93.0,99.0,-25.7,-21.2,True,False,25,101,-60.8,440.55,40.6,,25.0,3307.0,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,HUT,Hut 8 Corp. Common Stock,Finance: Consumer Services,軟體、人工智慧、加密貨幣概念,61.06,36.0,80.0,98.0,-25.9,-23.4,True,False,22,113,-56.6,86.09,41.0,,285.0,454.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,VICR,Vicor Corporation,Industrial Machinery/Components,,168.1,47.0,98.0,99.0,-26.1,-23.5,True,False,36,94,-56.1,237.76,41.4,,577.0,218.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,CLS,Celestica Inc.,Electrical Products,AI 伺服器與網通、人工智慧,242.92,20.0,72.0,97.0,-26.2,-22.4,True,True,38,113,-48.8,343.9,41.6,,137.0,849.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,CIEN,Ciena Corp,Telecommunications Equipment,電信、光通訊,296.04,31.0,90.0,98.0,-27.1,-14.2,True,False,44,112,-53.6,424.61,43.4,,103.0,1085.1,離200MA太遠，止損難設
-在200MA之下,CCJ,Cameco Corp,Other Metals and Minerals,機器人與自動化,74.32,20.0,35.0,94.0,-27.4,-13.4,True,True,57,198,-45.0,106.99,44.0,,453.0,292.5,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,FIX,Comfort Systems USA Inc,Engineering & Construction,,1161.63,26.0,85.0,97.0,-27.6,-21.9,True,False,21,125,-43.9,1676.4,44.3,,171.0,708.0,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,INTC,Intel Corporation,Semiconductors,人工智慧、半導體、資料中心、電動車與自駕,62.5,40.0,96.0,98.0,-28.4,-35.0,False,False,10,94,-56.1,91.21,45.9,,10.0,11141.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,TPL,Texas Pacific Land Corporation,Oil & Gas Production,油氣探勘,281.42,25.0,57.0,91.0,-29.5,-17.3,True,False,60,182,-48.4,416.85,48.1,,874.0,129.7,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,ARWR,Arrowhead Pharmaceuticals Inc,Biotechnology: Pharmaceutical Preparations,生技,49.36,24.0,53.0,98.0,-30.8,-23.9,True,True,42,79,-48.3,74.49,50.9,2026-11-12,852.0,134.8,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,POWL,Powell Industries Inc,Electrical Products,基礎建設,145.9,24.0,68.0,97.0,-31.6,-15.6,True,False,57,128,-55.5,222.92,52.8,2026-11-16,950.0,109.6,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,RDDT,"Reddit, Inc.",EDP Services,,105.66,16.0,26.0,90.0,-31.7,-25.4,True,True,60,211,-59.9,161.55,52.9,,156.0,778.0,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,MP,MP Materials Corp,Metal Mining,金屬礦業,36.73,14.0,20.0,96.0,-32.0,-17.6,True,True,56,129,-52.2,56.41,53.6,,521.0,243.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,CRWV,"CoreWeave, Inc. Class A Common Stock",Computer Software: Prepackaged Software,人工智慧、網路新經濟,60.77,12.0,28.0,89.0,-32.1,-17.6,True,True,58,131,-56.0,93.49,53.8,,26.0,3294.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,AMKR,Amkor Technology Inc,Semiconductors,,38.1,20.0,46.0,97.0,-32.6,-16.9,True,True,60,103,-60.5,59.08,55.1,,609.0,208.2,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,AXON,Axon Enterprise Inc.,Ordnance And Accessories,航太國防,315.42,14.0,23.0,82.0,-32.7,-26.0,True,True,46,90,-52.6,489.64,55.2,,247.0,505.3,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,AGX,Argan Inc,Engineering & Construction,基礎建設,322.0,17.0,43.0,97.0,-37.7,-11.9,True,True,58,94,-59.9,540.25,67.8,,846.0,136.8,離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,TTMI,TTM Technologies Inc,Electrical Products,,78.7,20.0,83.0,98.0,-38.1,-26.1,True,True,43,100,-64.8,132.94,68.9,,386.0,339.4,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,DY,Dycom Industries Inc,Water Sewer Pipeline Comm & Power Line Construction,基礎建設,228.02,13.0,20.0,92.0,-38.9,-12.7,True,True,58,117,-59.7,389.67,70.9,2026-11-18,744.0,164.2,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,APLD,Applied Digital Corporation,EDP Services,資料中心,17.91,10.0,17.0,98.0,-41.3,-20.2,True,True,60,116,-64.7,31.9,78.1,,248.0,504.9,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,STRL,"Sterling Infrastructure, Inc.",Military/Government/Technical,基礎建設,303.85,13.0,72.0,98.0,-44.7,-31.2,True,False,57,111,-69.8,574.22,89.0,,409.0,325.6,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,MOD,Modine Manufacturing Company,Auto Parts:O.E.M.,建材家居,106.67,10.0,43.0,96.0,-50.3,-34.1,True,True,60,118,-67.0,224.37,110.3,,501.0,254.0,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,AAOI,Applied Opt,Semiconductors,電信、光通訊,55.86,35.0,96.0,99.0,-51.4,-37.8,True,False,37,126,-76.1,120.06,114.9,,126.0,922.5,已大幅延伸，勿追空、離200MA太遠，止損難設
-在200MA之下,IREN,IREN Ltd,Finance: Consumer Services,加密貨幣概念,20.84,7.0,23.0,98.0,-51.6,-40.3,True,True,54,112,-70.5,44.95,115.7,,59.0,1655.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
-在200MA之下,IONS,Ionis Pharmaceuticals Inc,Biotechnology: Pharmaceutical Preparations,基因、生技,28.33,7.0,14.0,95.0,-56.4,-36.9,True,True,60,193,-67.3,67.97,139.9,,695.0,177.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+反彈到200MA附近,WCC,WESCO International Inc,Telecommunications Equipment,基礎建設,327.22,56.0,85.0,90.0,-0.4,-5.6,False,False,9,27,-15.8,343.37,4.9,,569.0,220.5,
+反彈到200MA附近,FTNT,Fortinet Inc,Computer peripheral equipment,資安、軟體,129.54,76.0,97.0,97.0,-0.7,-21.5,False,False,8,22,-34.3,136.35,5.3,,162.0,766.8,已大幅延伸，勿追空
+反彈到200MA附近,CLH,Clean Harbors Inc,Environmental Services,,293.84,63.0,76.0,80.0,-1.9,-5.6,False,False,9,75,-12.5,312.93,6.5,,800.0,149.8,
+反彈到200MA附近,MOG-A,Moog Inc,未分類,航太國防、國防科技、機器人與自動化,342.74,67.0,85.0,94.0,-3.5,-5.5,False,False,11,62,-23.6,371.15,8.3,2026-11-20,988.0,103.6,⚠ 10天內財報
+反彈到200MA附近,CORT,Corcept Therapeutics Incorporated,Biotechnology: Pharmaceutical Preparations,製藥,73.71,67.0,98.0,98.0,-3.5,-29.5,False,False,6,56,-41.7,79.79,8.3,,837.0,138.3,已大幅延伸，勿追空
+反彈到200MA附近,PWR,Quanta Services Inc,Engineering & Construction,基礎建設,606.16,55.0,84.0,92.0,-4.0,-3.5,True,False,17,132,-23.1,659.87,8.9,,163.0,751.8,
+反彈到200MA附近,KEYS,Keysight Technologies Inc,Industrial Machinery/Components,,304.23,70.0,92.0,94.0,-5.0,-9.3,False,False,11,27,-22.0,334.49,9.9,2026-11-19,310.0,412.9,⚠ 10天內財報
+反彈到200MA附近,SMTC,Semtech Corporation,Semiconductors,半導體,119.44,71.0,96.0,97.0,-5.6,-22.5,False,False,8,29,-40.9,132.27,10.7,2026-11-23,236.0,533.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+反彈到200MA附近,DAVE,Dave Inc,Finance: Consumer Services,,267.37,67.0,88.0,96.0,-8.4,-21.6,False,False,6,81,-41.7,305.11,14.1,,927.0,112.4,已大幅延伸，勿追空、離200MA太遠，止損難設
+反彈到200MA附近,B,Barrick Mining Corporation,Precious Metals,,37.84,42.0,60.0,96.0,-8.6,-7.6,True,True,34,199,-29.7,43.27,14.3,,413.0,321.1,離200MA太遠，止損難設、200MA向下（中段做空）
+反彈到200MA附近,EGO,Eldorado Gold Corp,Precious Metals,,31.84,35.0,71.0,96.0,-12.1,-15.5,False,True,24,199,-37.4,37.84,18.9,,871.0,130.5,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,FANG,Diamondback Energy Inc,Oil & Gas Production,油氣探勘,182.2,57.0,80.0,85.0,-3.4,-5.5,False,False,7,59,-15.5,197.09,8.2,,254.0,499.0,
+在200MA之下,ROK,Rockwell Automation Inc,Industrial Machinery/Components,基礎建設、機器人與自動化,404.2,47.0,62.0,81.0,-4.9,-5.4,False,False,14,95,-18.5,444.36,9.9,,344.0,370.5,
+在200MA之下,TKR,Timken Company,Metal Fabrications,,110.41,56.0,71.0,92.0,-6.1,-3.7,True,False,24,95,-24.4,122.82,11.2,,970.0,105.2,離200MA太遠，止損難設
+在200MA之下,ASML,ASML Holding N.V. New York Registry Shares,Industrial Machinery/Components,,1497.12,57.0,80.0,93.0,-6.3,-9.9,False,False,12,95,-24.9,1669.71,11.5,,35.0,2559.4,離200MA太遠，止損難設
+在200MA之下,FTI,TechnipFMC PLC,Oil and Gas Field Machinery,油服,64.92,57.0,84.0,94.0,-6.8,-7.4,False,False,12,49,-19.6,72.8,12.1,,606.0,207.7,離200MA太遠，止損難設
+在200MA之下,ADM,Archer-Daniels-Midland Company,Packaged Foods,,70.97,52.0,82.0,85.0,-6.8,-11.3,False,False,9,45,-20.0,79.58,12.1,,472.0,274.4,離200MA太遠，止損難設
+在200MA之下,FCX,Freeport-McMoran Copper & Gold Inc,Metal Mining,銅礦、金屬礦業,60.45,60.0,84.0,90.0,-7.0,-12.0,False,False,11,55,-24.5,67.91,12.3,,152.0,794.7,離200MA太遠，止損難設
+在200MA之下,SCCO,Southern Copper Corporation,Metal Mining,銅礦,168.21,53.0,84.0,94.0,-7.6,-11.8,False,False,11,57,-22.4,190.23,13.1,,577.0,218.0,離200MA太遠，止損難設
+在200MA之下,NEU,NewMarket Corporation,Major Chemicals,,702.89,41.0,83.0,84.0,-7.7,-17.8,False,False,9,62,-28.2,796.16,13.3,,947.0,109.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,UMC,United Microelectronics,Semiconductors,,15.76,85.0,97.0,98.0,-8.0,-24.5,False,False,10,98,-44.6,17.89,13.5,,504.0,253.6,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,DDOG,Datadog Inc,Computer Software: Prepackaged Software,軟體、雲端、人工智慧、網路新經濟,184.46,45.0,95.0,96.0,-8.3,-24.4,False,False,7,23,-38.7,210.13,13.9,,135.0,865.4,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,BE,Bloom Energy Corp,Industrial Machinery/Components,電動車與自駕,201.93,68.0,92.0,99.0,-9.6,-17.6,False,False,14,98,-42.5,233.4,15.6,,20.0,4092.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,ESI,Element Solutions Inc,Major Chemicals,,33.32,46.0,73.0,92.0,-9.9,-4.3,True,False,36,101,-32.2,38.65,16.0,,805.0,148.9,離200MA太遠，止損難設
+在200MA之下,BMNR,"BitMine Immersion Technologies, Inc.",Finance: Consumer Services,軟體、網路新經濟,18.45,33.0,55.0,98.0,-10.0,-21.7,False,True,12,232,-56.2,21.41,16.0,,141.0,835.1,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,DTM,DT Midstream Inc,Natural Gas Distribution,,119.61,40.0,51.0,80.0,-10.4,-3.1,True,False,59,97,-20.8,139.43,16.6,,891.0,121.9,離200MA太遠，止損難設
+在200MA之下,MLI,Mueller Industries Inc,Metal Fabrications,基礎建設,54.84,36.0,65.0,88.0,-10.8,-6.9,True,True,44,69,-22.7,64.27,17.2,,985.0,104.1,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,HOOD,Robinhood Markets Inc,Investment Bankers/Brokers/Service,網路新經濟、資本市場、金融科技、加密貨幣概念,81.35,37.0,43.0,96.0,-11.1,-21.9,False,True,14,233,-41.8,95.64,17.6,,43.0,2205.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,ALAB,"Astera Labs, Inc.",Semiconductors,半導體、光通訊,227.79,71.0,89.0,98.0,-11.4,-22.9,False,False,9,95,-54.4,268.73,18.0,,83.0,1310.4,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,NOW,ServiceNow Inc,Computer Software: Prepackaged Software,軟體、雲端、人工智慧,100.66,33.0,80.0,91.0,-11.6,-24.3,False,True,11,231,-42.5,118.94,18.2,,54.0,1948.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,MRVL,Marvell Technology Group Ltd,Semiconductors,人工智慧、半導體、資料中心、光通訊,164.45,86.0,98.0,98.0,-11.8,-28.6,False,False,9,102,-50.1,194.95,18.5,2026-12-01,15.0,5217.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,GNRC,Generac Holdings Inc,Metal Fabrications,,192.88,40.0,62.0,92.0,-12.1,-2.7,True,False,51,98,-34.9,229.31,18.9,,488.0,263.8,離200MA太遠，止損難設
+在200MA之下,HBM,Hudbay Minerals Inc.,Metal Mining,,21.62,40.0,77.0,97.0,-12.5,-13.1,False,True,22,114,-32.7,25.81,19.4,2026-11-12,937.0,110.7,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,GMED,Globus Medical,Medical/Dental Instruments,醫療器材,72.3,33.0,51.0,83.0,-12.7,-5.7,True,True,57,213,-28.7,86.52,19.7,,856.0,133.8,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,CGNX,Cognex Corporation,Industrial Machinery/Components,機器人與自動化,50.77,38.0,73.0,91.0,-13.0,-12.9,True,False,16,95,-30.2,60.95,20.1,,952.0,109.2,離200MA太遠，止損難設
+在200MA之下,FFIV,"F5, Inc.",Computer Communications Equipment,軟體,317.64,53.0,90.0,91.0,-13.1,-23.5,False,False,10,23,-34.3,382.04,20.3,,431.0,308.4,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,KLAC,KLA Corporation,Electronic Components,,157.3,47.0,74.0,96.0,-13.4,-9.3,True,False,26,95,-48.8,189.8,20.7,,53.0,1951.9,離200MA太遠，止損難設
+在200MA之下,MTSI,MACOM Technology Solutions Holdings Inc,Semiconductors,半導體,245.76,43.0,90.0,95.0,-13.4,-8.6,True,False,29,118,-41.3,296.55,20.7,,293.0,439.9,離200MA太遠，止損難設
+在200MA之下,SANM,Sanmina Corporation,Electrical Products,,164.48,35.0,80.0,95.0,-13.9,-13.7,True,True,21,113,-43.0,199.57,21.3,,819.0,144.9,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,GEV,GE Vernova LLC,Consumer Electronics/Appliances,AI 電力與發電,818.49,44.0,75.0,95.0,-13.9,-10.6,True,False,23,92,-31.5,993.31,21.4,,33.0,2666.5,離200MA太遠，止損難設
+在200MA之下,VSH,Vishay Intertechnology Inc,Electrical Products,,27.79,76.0,87.0,98.0,-14.1,-9.0,True,False,22,102,-59.9,33.8,21.6,,924.0,112.8,離200MA太遠，止損難設
+在200MA之下,ARM,Arm Holdings plc American Depositary Shares,Semiconductors,,199.78,63.0,90.0,98.0,-14.0,-19.8,False,False,15,102,-55.9,242.87,21.6,,76.0,1402.6,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,SITM,Sitime Corporation,Semiconductors,半導體、電動車與自駕,470.55,39.0,85.0,97.0,-14.5,-15.1,False,False,22,129,-47.8,575.13,22.2,,416.0,318.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,AMAT,Applied Materials Inc,Semiconductors,,380.95,60.0,85.0,97.0,-14.6,-13.3,True,False,21,95,-48.4,465.92,22.3,2026-11-12,29.0,3067.1,⚠ 10天內財報、離200MA太遠，止損難設
+在200MA之下,EME,EMCOR Group Inc,Engineering & Construction,基礎建設,662.77,31.0,60.0,86.0,-14.9,-8.6,True,True,46,132,-30.3,813.99,22.8,,433.0,306.6,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,JBL,Jabil Inc.,Electrical Products,,259.96,36.0,73.0,91.0,-15.6,-10.5,True,False,28,103,-39.4,321.93,23.8,,328.0,391.6,離200MA太遠，止損難設
+在200MA之下,BWA,BorgWarner Inc,Auto Parts:O.E.M.,,50.99,30.0,74.0,92.0,-15.8,-13.2,True,False,23,113,-35.1,63.27,24.1,,767.0,157.9,離200MA太遠，止損難設
+在200MA之下,SIMO,Silicon Motion Technology,Semiconductors,,179.5,63.0,94.0,98.0,-17.1,-23.7,False,False,14,101,-49.2,226.22,26.0,,614.0,204.7,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,VIAV,Viavi Solutions Inc,Semiconductors,電信,32.54,58.0,95.0,98.0,-17.0,-10.6,True,False,28,136,-46.2,40.99,26.0,,578.0,217.4,離200MA太遠，止損難設
+在200MA之下,SMCI,Super Micro Computer Inc,Computer Manufacturing,AI 伺服器與網通、人工智慧、資料中心,26.99,23.0,83.0,92.0,-17.1,-26.6,False,False,12,114,-47.5,34.02,26.1,,72.0,1466.5,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,LRCX,Lam Research Corp,Industrial Machinery/Components,,233.78,43.0,85.0,97.0,-17.6,-16.2,True,False,21,95,-46.6,296.38,26.8,,31.0,2919.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,BKR,Baker Hughes Co,Oil and Gas Field Machinery,油服,48.86,29.0,64.0,87.0,-17.9,-11.9,True,False,44,139,-29.8,62.2,27.3,,274.0,467.0,離200MA太遠，止損難設
+在200MA之下,NVDA,NVIDIA Corporation,Semiconductors,人工智慧、網路新經濟、半導體、資料中心、太空、機器人與自動化、電動車與自駕,166.19,26.0,74.0,83.0,-18.6,-23.0,False,False,8,27,-31.7,213.25,28.3,2026-11-17,1.0,29388.2,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,FSLR,First Solar Inc,Semiconductors,半導體,172.3,23.0,31.0,90.0,-19.3,-7.0,True,True,60,113,-46.3,223.03,29.4,,253.0,499.5,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,FORM,FormFactor Inc,Semiconductors,,92.32,49.0,94.0,98.0,-19.4,-18.3,True,False,26,95,-42.4,119.67,29.6,,624.0,200.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,ONTO,Onto Innovation Inc,Industrial Machinery/Components,,209.67,40.0,76.0,96.0,-19.4,-15.8,True,False,24,95,-45.7,271.75,29.6,,516.0,247.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,CYTK,Cytokinetics Inc,Biotechnology: Pharmaceutical Preparations,生技,56.16,26.0,43.0,92.0,-19.6,-12.9,True,True,43,95,-36.4,72.97,29.9,,868.0,131.7,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,DOCN,DigitalOcean Holdings Inc,Computer Software: Programming Data Processing,雲端,90.07,59.0,95.0,98.0,-20.1,-21.3,False,False,20,103,-52.0,117.82,30.8,,368.0,351.1,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,NVT,nVent Electric PLC,Industrial Machinery/Components,,115.5,30.0,83.0,92.0,-20.1,-20.9,False,False,19,101,-37.3,151.14,30.9,,349.0,367.2,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,RMBS,Rambus Inc,Semiconductors,半導體,84.97,28.0,39.0,95.0,-20.2,-8.3,True,True,55,113,-51.2,111.26,30.9,,629.0,199.2,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,MCHP,Microchip Technology Inc,Semiconductors,半導體、資料中心,62.08,31.0,50.0,88.0,-21.2,-16.1,True,False,50,130,-40.7,82.32,32.6,,144.0,827.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,FSLY,"Fastly, Inc. Class A Common Stock",Computer Software: Prepackaged Software,雲端,17.19,41.0,97.0,98.0,-21.3,-27.0,False,False,9,152,-50.6,22.83,32.8,,735.0,167.1,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,FUTU,Futu Holdings Ltd,Investment Bankers/Brokers/Service,,95.62,22.0,32.0,89.0,-21.4,-11.0,True,True,60,211,-48.7,127.19,33.0,2026-11-19,926.0,112.6,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,COHR,Coherent Corp,Electronic Components,光通訊、電動車與自駕,232.08,39.0,87.0,98.0,-21.8,-12.8,True,False,30,113,-47.3,310.16,33.6,,49.0,2059.9,離200MA太遠，止損難設
+在200MA之下,STX,Seagate Technology PLC,Electronic Components,記憶體與儲存、人工智慧,545.14,52.0,96.0,98.0,-22.1,-26.9,False,False,17,102,-52.3,731.31,34.2,,23.0,3740.1,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,GFS,Globalfoundries Inc,Semiconductors,,42.62,32.0,66.0,95.0,-22.3,-6.5,True,False,60,119,-53.8,57.33,34.5,,548.0,232.0,離200MA太遠，止損難設
+在200MA之下,CRDO,Credo Technology Group Holding Ltd,Semiconductors,半導體、光通訊,139.81,25.0,58.0,97.0,-22.7,-19.2,True,False,32,101,-54.7,188.99,35.2,,69.0,1513.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,CLS,Celestica Inc.,Electrical Products,AI 伺服器與網通、人工智慧,254.03,25.0,62.0,97.0,-22.7,-18.8,True,True,38,114,-46.4,343.42,35.2,,137.0,855.0,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,AKAM,Akamai Technologies Inc,Business Services,資安、雲端,86.56,23.0,50.0,92.0,-22.7,-13.2,True,True,52,127,-47.7,117.07,35.2,,198.0,597.7,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,VRT,Vertiv Holdings Co,Industrial Machinery/Components,AI 伺服器與網通,209.64,28.0,48.0,96.0,-22.8,-9.9,True,False,46,126,-44.8,283.67,35.3,,68.0,1515.6,離200MA太遠，止損難設
+在200MA之下,BABA,Alibaba Group Holding Ltd,Business Services,雲端、人工智慧,94.36,18.0,29.0,86.0,-23.0,-12.0,True,True,60,204,-47.4,128.14,35.8,2026-11-19,118.0,976.6,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,LITE,Lumentum Holdings Inc,Telecommunications Equipment,電信、光通訊,624.65,70.0,98.0,99.0,-23.1,-28.4,False,False,11,24,-45.3,849.38,36.0,,18.0,4663.7,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,TSEM,Tower Semiconductor Ltd,Semiconductors,,157.86,38.0,92.0,98.0,-23.4,-21.7,True,False,20,101,-50.7,215.32,36.4,,255.0,496.6,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,GLW,Corning Incorporated,Telecommunications Equipment,,119.5,33.0,78.0,97.0,-23.5,-15.9,True,False,27,95,-55.9,163.21,36.6,,85.0,1288.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,CMI,Cummins Inc,Industrial Machinery/Components,,455.4,25.0,47.0,89.0,-23.6,-12.2,True,True,59,102,-38.0,622.49,36.7,,178.0,657.7,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,TER,Teradyne Inc,Electrical Products,太空、機器人與自動化,263.75,34.0,93.0,98.0,-24.7,-23.4,True,False,21,95,-45.9,365.83,38.7,,102.0,1082.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,FLEX,Flex Ltd,Electrical Products,,78.12,33.0,84.0,97.0,-24.7,-21.8,True,False,22,113,-53.2,108.34,38.7,,278.0,463.3,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,KGS,"Kodiak Gas Services, Inc.",Natural Gas Distribution,油服,44.4,31.0,64.0,94.0,-24.7,-14.0,True,False,39,122,-42.4,61.61,38.8,,984.0,104.2,離200MA太遠，止損難設
+在200MA之下,HUT,Hut 8 Corp. Common Stock,Finance: Consumer Services,軟體、人工智慧、加密貨幣概念,61.975,42.0,69.0,98.0,-24.8,-21.9,True,False,23,114,-56.0,86.08,38.9,,284.0,454.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,CAT,Caterpillar Inc,Construction/Ag Equipment/Trucks,機器人與自動化,605.28,27.0,67.0,94.0,-24.8,-18.6,True,False,25,95,-43.4,840.89,38.9,,46.0,2179.3,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,AEIS,Advanced Energy Industries Inc,Industrial Machinery/Components,,228.78,25.0,58.0,97.0,-25.4,-10.8,True,True,60,143,-42.4,320.39,40.0,,781.0,154.5,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,PAAS,Pan American Silver Corp.,Precious Metals,,37.72,26.0,42.0,95.0,-25.5,-16.1,True,True,50,202,-45.6,52.91,40.3,,715.0,172.6,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,HL,Hecla Mining Company,Mining & Quarrying of Nonmetallic Minerals (No Fuels),金屬礦業,13.35,22.0,41.0,98.0,-25.8,-19.5,True,True,44,202,-60.9,18.81,40.9,,232.0,544.1,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,WDC,Western Digital Corporation,Electronic Components,記憶體與儲存,311.21,47.0,92.0,99.0,-26.2,-21.1,True,False,26,102,-61.1,440.71,41.6,,26.0,3302.9,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,KGC,Kinross Gold Corporation,Precious Metals,,20.71,22.0,31.0,96.0,-26.3,-15.7,True,True,46,202,-46.8,29.35,41.7,,655.0,192.2,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,SPXC,"SPX Technologies, Inc.",Industrial Machinery/Components,基礎建設,150.6,19.0,29.0,82.0,-26.4,-11.4,True,True,60,98,-40.0,213.75,41.9,,920.0,113.5,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,SNDK,Sandisk Corp,Electronic Components,記憶體與儲存,937.46,90.0,99.0,99.0,-26.8,-35.6,False,False,10,101,-60.2,1338.34,42.8,,8.0,14122.1,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,VICR,Vicor Corporation,Industrial Machinery/Components,,164.69,46.0,97.0,99.0,-27.6,-24.9,True,False,37,95,-57.0,237.75,44.4,,584.0,216.3,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,CIEN,Ciena Corp,Telecommunications Equipment,電信、光通訊,293.99,33.0,85.0,98.0,-27.7,-14.5,True,False,45,113,-53.9,424.8,44.5,,104.0,1077.5,離200MA太遠，止損難設
+在200MA之下,NBIS,Nebius Group N.V.,Computer Software: Programming Data Processing,電動車與自駕,128.64,31.0,86.0,98.0,-28.2,-34.5,False,False,19,101,-57.1,187.31,45.6,2026-11-12,21.0,3939.2,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,AG,First Majestic Silver Corp,Precious Metals,,13.99,26.0,39.0,98.0,-28.6,-18.5,True,True,44,179,-56.3,20.47,46.3,,732.0,167.6,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,TPL,Texas Pacific Land Corporation,Oil & Gas Production,油氣探勘,281.18,25.0,51.0,91.0,-29.4,-17.0,True,True,60,183,-48.4,416.47,48.1,,873.0,129.6,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,FIX,Comfort Systems USA Inc,Engineering & Construction,,1128.09,25.0,82.0,97.0,-29.6,-23.6,True,False,22,126,-45.5,1674.71,48.5,,170.0,710.1,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,CCJ,Cameco Corp,Other Metals and Minerals,機器人與自動化,71.78,20.0,32.0,94.0,-29.7,-15.9,True,True,57,199,-46.9,106.66,48.6,,453.0,292.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,INTC,Intel Corporation,Semiconductors,人工智慧、半導體、資料中心、電動車與自駕,61.2,42.0,95.0,98.0,-29.9,-36.0,False,False,11,95,-57.0,91.27,49.1,,10.0,11128.2,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,POWL,Powell Industries Inc,Electrical Products,基礎建設,141.77,22.0,57.0,97.0,-33.5,-17.7,True,False,58,129,-56.7,222.89,57.2,2026-11-16,951.0,109.2,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,ARWR,Arrowhead Pharmaceuticals Inc,Biotechnology: Pharmaceutical Preparations,生技,47.15,21.0,54.0,98.0,-33.8,-26.4,True,True,43,80,-50.6,74.4,57.8,2026-11-12,852.0,134.2,⚠ 10天內財報、已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,AXTI,AXT Inc,Semiconductors,,43.54,93.0,99.0,99.0,-34.0,-30.7,True,False,23,119,-69.6,68.93,58.3,,189.0,609.8,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,AMKR,Amkor Technology Inc,Semiconductors,,37.12,21.0,40.0,97.0,-34.3,-18.6,True,True,60,104,-61.5,59.01,59.0,,610.0,206.4,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,AXON,Axon Enterprise Inc.,Ordnance And Accessories,航太國防,307.11,14.0,22.0,82.0,-34.3,-27.3,True,True,47,91,-53.8,488.37,59.0,,246.0,504.5,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,RDDT,"Reddit, Inc.",EDP Services,,99.55,13.0,24.0,90.0,-35.4,-29.1,True,True,60,212,-62.2,161.06,61.8,,161.0,769.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,CRWV,"CoreWeave, Inc. Class A Common Stock",Computer Software: Prepackaged Software,人工智慧、網路新經濟,56.6,12.0,20.0,89.0,-36.6,-22.7,True,True,58,132,-59.1,93.23,64.7,,25.0,3391.4,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,AGX,Argan Inc,Engineering & Construction,基礎建設,315.34,16.0,36.0,97.0,-39.0,-13.3,True,True,59,95,-60.8,540.03,71.3,,859.0,133.3,離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,DY,Dycom Industries Inc,Water Sewer Pipeline Comm & Power Line Construction,基礎建設,225.26,13.0,20.0,92.0,-39.5,-13.2,True,True,59,118,-60.2,388.91,72.6,2026-11-18,751.0,161.5,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,TTMI,TTM Technologies Inc,Electrical Products,,76.28,19.0,69.0,98.0,-40.0,-27.8,True,True,43,101,-65.9,132.82,74.1,,385.0,339.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,ALNY,Alnylam Pharmaceuticals Inc,Biotechnology: Pharmaceutical Preparations,生技,156.65,11.0,16.0,88.0,-43.3,-29.2,True,True,60,237,-67.4,288.83,84.4,,306.0,419.9,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,APLD,Applied Digital Corporation,EDP Services,資料中心,16.95,10.0,16.0,98.0,-44.3,-23.9,True,True,60,117,-66.6,31.78,87.5,,247.0,504.5,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,STRL,"Sterling Infrastructure, Inc.",Military/Government/Technical,基礎建設,301.6,12.0,58.0,98.0,-45.1,-31.2,True,False,58,112,-70.0,573.85,90.3,,408.0,326.0,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,MOD,Modine Manufacturing Company,Auto Parts:O.E.M.,建材家居,106.1,10.0,36.0,96.0,-50.5,-33.9,True,True,60,119,-67.2,224.16,111.3,,503.0,253.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,AAOI,Applied Opt,Semiconductors,電信、光通訊,52.85,35.0,94.0,99.0,-54.0,-40.4,True,False,38,127,-77.4,120.1,127.2,,126.0,924.4,已大幅延伸，勿追空、離200MA太遠，止損難設
+在200MA之下,IREN,IREN Ltd,Finance: Consumer Services,加密貨幣概念,19.48,6.0,18.0,98.0,-54.5,-43.6,True,True,54,113,-72.4,44.72,129.6,,59.0,1650.7,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,IONS,Ionis Pharmaceuticals Inc,Biotechnology: Pharmaceutical Preparations,基因、生技,27.31,6.0,15.0,95.0,-57.8,-38.3,True,True,60,194,-68.5,67.69,147.8,,690.0,178.8,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
