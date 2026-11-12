@@ -255,9 +255,17 @@ def candidates(stocks, T, members, data_day):
         notes.append("財報日曆沒有資料（Nasdaq 連線失敗），財報欄空白")
     yr = date.today().year
 
+    first = s.set_index("代號")["首個交易日"] if "首個交易日" in s else pd.Series(dtype=str)
+    hist_start = stocks["首個交易日"].min() if "首個交易日" in stocks else ""
+
     def flags(c):
         f = [x for x in (fund.get(c, {}).get("flags") or "").split("、") if x]
-        if pd.notna(ipo.get(c, np.nan)) and ipo.get(c) >= yr - 3:
+        y = ipo.get(c, np.nan)
+        # Nasdaq 的 IPO 年遇到轉板會被改成轉板年（例如 Etsy 2025）：
+        # 我們的資料第一天就有成交、但 IPO 年比那天還晚 → 不算 IPO
+        fd = str(first.get(c, "") or "")
+        bogus = fd and fd == hist_start and pd.notna(y) and int(y) > int(fd[:4])
+        if pd.notna(y) and y >= yr - 3 and not bogus:
             f.append("強勢IPO")
         return f
     s["板塊"] = s["代號"].map(why)
@@ -273,6 +281,8 @@ def candidates(stocks, T, members, data_day):
             return ""
         d, t = earn[c]
         n = (date.fromisoformat(d) - d0).days
+        if n <= 0:  # 資料日當天或之前公布的，已經反映在股價裡
+            return ""
         txt = f"{d[5:]}{t}"
         return f"<span class='warn'>⚠ {txt}</span>" if n <= 7 else txt
 

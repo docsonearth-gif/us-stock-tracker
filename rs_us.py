@@ -853,7 +853,9 @@ def main():
         print(f"\n板塊訊號（{today['日期'].iloc[0]}）：主流 {int(today['主流'].sum())}、醞釀 {int(today['醞釀'].sum())}、"
               f"啟動 {int(today['啟動'].sum())}")
         print(today[today["主流"]][["類型", "板塊", "家數", "創高", "成交額比", "RS排名"]].to_string(index=False))
-    full.assign(資料日期=latest).to_csv(os.path.join(DATA, "stocks_today.csv"), index=False, encoding="utf-8-sig")
+    first_day = piv["close"].apply(lambda x: x.first_valid_index()).dt.strftime("%Y-%m-%d")
+    full.assign(資料日期=latest, 首個交易日=full["代號"].map(first_day)).to_csv(
+        os.path.join(DATA, "stocks_today.csv"), index=False, encoding="utf-8-sig")
     if util is not None:
         util.to_csv(os.path.join(DATA, "utility_today.csv"), index=False, encoding="utf-8-sig")
     with open(os.path.join(DATA, "utility_note.txt"), "w", encoding="utf-8") as f:

@@ -2,8 +2,8 @@
 反彈到200MA附近,WCC,WESCO International Inc,Telecommunications Equipment,基礎建設,327.22,56.0,85.0,90.0,-0.4,-5.6,False,False,9,27,-15.8,343.37,4.9,,569.0,220.5,
 反彈到200MA附近,FTNT,Fortinet Inc,Computer peripheral equipment,資安、軟體,129.54,76.0,97.0,97.0,-0.7,-21.5,False,False,8,22,-34.3,136.35,5.3,,162.0,766.8,已大幅延伸，勿追空
 反彈到200MA附近,CLH,Clean Harbors Inc,Environmental Services,,293.84,63.0,76.0,80.0,-1.9,-5.6,False,False,9,75,-12.5,312.93,6.5,,800.0,149.8,
-反彈到200MA附近,MOG-A,Moog Inc,未分類,航太國防、國防科技、機器人與自動化,342.74,67.0,85.0,94.0,-3.5,-5.5,False,False,11,62,-23.6,371.15,8.3,2026-11-20,988.0,103.6,⚠ 10天內財報
 反彈到200MA附近,CORT,Corcept Therapeutics Incorporated,Biotechnology: Pharmaceutical Preparations,製藥,73.71,67.0,98.0,98.0,-3.5,-29.5,False,False,6,56,-41.7,79.79,8.3,,837.0,138.3,已大幅延伸，勿追空
+反彈到200MA附近,MOG-A,Moog Inc,未分類,航太國防、國防科技、機器人與自動化,342.74,67.0,85.0,94.0,-3.5,-5.5,False,False,11,62,-23.6,371.15,8.3,2026-11-20,988.0,103.6,⚠ 10天內財報
 反彈到200MA附近,PWR,Quanta Services Inc,Engineering & Construction,基礎建設,606.16,55.0,84.0,92.0,-4.0,-3.5,True,False,17,132,-23.1,659.87,8.9,,163.0,751.8,
 反彈到200MA附近,KEYS,Keysight Technologies Inc,Industrial Machinery/Components,,304.23,70.0,92.0,94.0,-5.0,-9.3,False,False,11,27,-22.0,334.49,9.9,2026-11-19,310.0,412.9,⚠ 10天內財報
 反彈到200MA附近,SMTC,Semtech Corporation,Semiconductors,半導體,119.44,71.0,96.0,97.0,-5.6,-22.5,False,False,8,29,-40.9,132.27,10.7,2026-11-23,236.0,533.0,已大幅延伸，勿追空、離200MA太遠，止損難設
@@ -65,8 +65,8 @@
 在200MA之下,COHR,Coherent Corp,Electronic Components,光通訊、電動車與自駕,232.08,39.0,87.0,98.0,-21.8,-12.8,True,False,30,113,-47.3,310.16,33.6,,49.0,2059.9,離200MA太遠，止損難設
 在200MA之下,STX,Seagate Technology PLC,Electronic Components,記憶體與儲存、人工智慧,545.14,52.0,96.0,98.0,-22.1,-26.9,False,False,17,102,-52.3,731.31,34.2,,23.0,3740.1,已大幅延伸，勿追空、離200MA太遠，止損難設
 在200MA之下,GFS,Globalfoundries Inc,Semiconductors,,42.62,32.0,66.0,95.0,-22.3,-6.5,True,False,60,119,-53.8,57.33,34.5,,548.0,232.0,離200MA太遠，止損難設
-在200MA之下,CRDO,Credo Technology Group Holding Ltd,Semiconductors,半導體、光通訊,139.81,25.0,58.0,97.0,-22.7,-19.2,True,False,32,101,-54.7,188.99,35.2,,69.0,1513.8,已大幅延伸，勿追空、離200MA太遠，止損難設
 在200MA之下,CLS,Celestica Inc.,Electrical Products,AI 伺服器與網通、人工智慧,254.03,25.0,62.0,97.0,-22.7,-18.8,True,True,38,114,-46.4,343.42,35.2,,137.0,855.0,已大幅延伸，勿追空、離200MA太遠，止損難設、200MA向下（中段做空）
+在200MA之下,CRDO,Credo Technology Group Holding Ltd,Semiconductors,半導體、光通訊,139.81,25.0,58.0,97.0,-22.7,-19.2,True,False,32,101,-54.7,188.99,35.2,,69.0,1513.8,已大幅延伸，勿追空、離200MA太遠，止損難設
 在200MA之下,AKAM,Akamai Technologies Inc,Business Services,資安、雲端,86.56,23.0,50.0,92.0,-22.7,-13.2,True,True,52,127,-47.7,117.07,35.2,,198.0,597.7,離200MA太遠，止損難設、200MA向下（中段做空）
 在200MA之下,VRT,Vertiv Holdings Co,Industrial Machinery/Components,AI 伺服器與網通,209.64,28.0,48.0,96.0,-22.8,-9.9,True,False,46,126,-44.8,283.67,35.3,,68.0,1515.6,離200MA太遠，止損難設
 在200MA之下,BABA,Alibaba Group Holding Ltd,Business Services,雲端、人工智慧,94.36,18.0,29.0,86.0,-23.0,-12.0,True,True,60,204,-47.4,128.14,35.8,2026-11-19,118.0,976.6,⚠ 10天內財報、離200MA太遠，止損難設、200MA向下（中段做空）
