@@ -1,0 +1,42 @@
+name: ETF 長歷史（做空回測用）
+
+on:
+  push:
+    paths: ["tools/fetch_etf_long.py", ".github/workflows/etf_long.yml"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tracker
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests pandas
+
+      - name: 下載 ETF 長歷史
+        run: python tools/fetch_etf_long.py
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+
+      - name: 存檔到 repo
+        run: |
+          git config user.name "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+          git add data/etf_long.csv.gz
+          git diff --cached --quiet || git commit -m "ETF 長歷史 $(date -u +%F)"
+          for i in 1 2 3; do
+            git push && break
+            git pull --rebase origin main || { git rebase --abort; exit 1; }
+          done
