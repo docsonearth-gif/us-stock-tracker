@@ -13,6 +13,7 @@
 """
 
 import html
+import re
 import os
 import sys
 from datetime import date, datetime
@@ -286,16 +287,23 @@ def candidates(stocks, T, members, data_day):
         txt = f"{d[5:]}{t}"
         return f"<span class='warn'>⚠ {txt}</span>" if n <= 7 else txt
 
+    def eps_txt(v):
+        parts = [x for x in v.split("|")] if v else []
+        if not any(parts):
+            return "—"
+        return "／".join("—" if x == "" else (f"{int(x):+d}" if abs(int(x)) < 1000 else ("+999" if int(x) > 0 else "-999"))
+                         for x in parts)
+
     def ext(x):
         return f"<span class='warn'>{x:+.0f}% 勿追</span>" if x >= EXT_WARN else f"{x:+.0f}%"
     top = s.head(MAX_CAND)
     d = pd.DataFrame({
-        "代號": top["代號"].map(e), "名稱": top["名稱"].map(lambda x: e(str(x)[:22])),
-        "板塊（★＝主流）": top["板塊"].map(lambda x: e(str(x)[:34])), "RS": top["RS評分"].astype(int),
+        "代號": top["代號"].map(e), "名稱": top["名稱"].map(lambda x: e(re.sub(r",?\s+(Inc\.?|Corp\.?|Corporation|Incorporated|Ltd\.?|Holdings?|Co\.?)(\s+Class [A-Z].*|\s+Common Stock)?$", "", str(x).strip())[:18])),
+        "板塊（★＝主流）": top["板塊"].map(lambda x: e(str(x)[:28])), "RS": top["RS評分"].astype(int),
         "距高點": top["距52週高點%"].map("{:+.0f}%".format), "距50日線": top["距50日線%"].map(ext),
         "財報": top["代號"].map(er),
         "加分項": top["加分項"].map(lambda f: e("、".join(f))),
-        "EPS年增%": top["代號"].map(lambda c: e((fund.get(c, {}).get("eps_yoy") or "").replace("|", "／"))),
+        "EPS 年增%（新→舊）": top["代號"].map(lambda c: eps_txt(fund.get(c, {}).get("eps_yoy") or "")),
     })
     html_ = table(d, "cand")
     if total > MAX_CAND:
@@ -335,8 +343,9 @@ table.narrow { width: auto; }
 th { background: #1F3864; color: #fff; padding: 2px 4px; text-align: left; font-weight: bold; }
 td { padding: 2px 4px; border-bottom: 0.5px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #F5F7FA; }
-.cand td:nth-child(3) { max-width: 50mm; }
-.cand td:nth-child(5), .cand td:nth-child(6), .cand td:nth-child(7), .cand td:nth-child(8), .cand th { white-space: nowrap; }
+tr { page-break-inside: avoid; }
+.cand { font-size: 7.4pt; } .cand td:nth-child(2) { max-width: 30mm; } .cand td:nth-child(3) { max-width: 42mm; }
+.cand td:nth-child(4), .cand td:nth-child(5), .cand td:nth-child(6), .cand td:nth-child(7), .cand td:nth-child(9), .cand th { white-space: nowrap; }
 .sub { color: #666; font-size: 8pt; margin-bottom: 6px; }
 """
 

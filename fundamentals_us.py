@@ -3,7 +3,7 @@
 
 加分項（J Law 美股：先過必要條件，再用加分項排序）
   EPS≥20%     最近一季 EPS（稀釋）年增 ≥ 20%
-  EPS加速     最近 3 季 EPS 年增率一季比一季高
+  EPS加速     最近 3 季 EPS 年增率一季比一季高，且前兩季都是正成長
   轉盈        最近一季 EPS 為正、去年同季為負
   營收≥20%加速 最近一季營收年增 ≥ 20%，且連 2 季加速
   強勢IPO     近 3 年內上市（Nasdaq 篩選器的 IPO 年）
@@ -101,7 +101,8 @@ def analyze(facts):
     flags = []
     if eg and eg[0] is not None and eg[0] >= 0.2:
         flags.append("EPS≥20%")
-    if len(eg) >= 3 and None not in eg[:3] and eg[0] > eg[1] > eg[2]:
+    # 加速：近 3 季年增率一季比一季高，且前兩季都是正成長（避免小基期從負跳正被誤判）
+    if len(eg) >= 3 and None not in eg[:3] and eg[0] > eg[1] > eg[2] and eg[1] > 0:
         flags.append("EPS加速")
     if eps:
         (y, q) = max(eps)
