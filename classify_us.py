@@ -61,8 +61,15 @@ def nasdaq_industry():
         sym = str(x.get("symbol", "")).strip()
         if not sym or "^" in sym:
             continue
+        # 流通股數＝市值 ÷ 最新價（市值每天用當天收盤重算）
+        try:
+            mc = float(str(x.get("marketCap") or "0").replace(",", "") or 0)
+            px = float(str(x.get("lastsale") or "0").replace("$", "").replace(",", "") or 0)
+            shares = f"{mc / px:.0f}" if mc > 0 and px > 0 else ""
+        except ValueError:
+            shares = ""
         out[norm_code(sym)] = (str(x.get("sector") or "").strip(), str(x.get("industry") or "").strip(),
-                               str(x.get("ipoyear") or "").strip())
+                               str(x.get("ipoyear") or "").strip(), shares)
     return out
 
 
@@ -76,7 +83,7 @@ def update_industry():
     hit = 0
     for c, v in st.items():
         if c in ind and (ind[c][0] or ind[c][1]):
-            v["sector"], v["industry"], v["ipo_year"] = ind[c]
+            v["sector"], v["industry"], v["ipo_year"], v["shares"] = ind[c]
             hit += 1
     save_stocks(st)
     n_ind = len({v["industry"] for v in st.values() if v.get("industry")})

@@ -37,6 +37,11 @@ NH_DROP = float(os.getenv("NH_DROP", "5"))                            # 新高�
 NH_DROP_N = int(os.getenv("NH_DROP_N", "5"))                          # 新高大跌幾檔算出貨警訊
 HISTORY_DAYS = 81
 
+# VCP先決條件：排除太小的公司（市值、流動性、股價；設 0 就是不過濾）
+VCP_MIN_MCAP = float(os.getenv("VCP_MIN_MCAP_B", "1")) * 1e9          # 市值 ≥ 10 億美元
+VCP_MIN_DV = float(os.getenv("VCP_MIN_DOLLAR_VOL_M", "20")) * 1e6     # 50 日均成交額 ≥ 2,000 萬美元
+VCP_MIN_PRICE = float(os.getenv("VCP_MIN_PRICE", "12"))               # 股價 ≥ 12 美元
+
 # Utility Screen 參數
 UT_MIN_DAYS = int(os.getenv("UTILITY_MIN_DAYS", "20"))
 UT_MAX_DAYS = int(os.getenv("UTILITY_MAX_DAYS", "200"))
@@ -355,7 +360,7 @@ VCP_MA50_UP = int(os.getenv("VCP_MA50_UP", "10"))         # 50MA 比幾天前高
 
 
 def vcp_prereq(full, panels, piv):
-    """VCP 先決條件：股價 ≥ 52 週高點 × 0.75、≥ 52 週低點 × 1.3、200MA 比一個月前高、
+    """VCP 先決條件（排除小型股：市值、成交額、股價門檻見 VCP_MIN_*）：股價 ≥ 52 週高點 × 0.75、≥ 52 週低點 × 1.3、200MA 比一個月前高、
     50MA > 200MA、收盤 > 200MA、50MA 比 10 天前高、收盤 ≥ 50MA × 0.92。依 RS 評分排序。"""
     adj, ma50, ma200 = panels["adj_ff"], panels["ma50"], panels["ma200"]
     T = adj.index[-1]
@@ -374,10 +379,17 @@ def vcp_prereq(full, panels, piv):
     v.index.name = "代號"
     keep = ok[ok.fillna(False)].index
     d = full[full["代號"].isin(keep)].merge(v.reset_index(), on="代號", how="left")
+    # 排除太小的公司：市值（沒有市值資料的不因市值剔除）、50 日均成交額、股價
+    n0 = len(d)
+    mcap = d["市值(億美元)"] * 1e8 if "市值(億美元)" in d else pd.Series(np.nan, index=d.index)
+    d = d[(mcap.isna() | (mcap >= VCP_MIN_MCAP)) & (d["50日均成交額(百萬美元)"] * 1e6 >= VCP_MIN_DV)
+          & (d["收盤"] >= VCP_MIN_PRICE)]
+    print(f"VCP先決條件：{n0} 檔 → 排除小型股後 {len(d)} 檔"
+          f"（市值 ≥ {VCP_MIN_MCAP / 1e8:g} 億美元、50 日均成交額 ≥ {VCP_MIN_DV / 1e6:g} 百萬美元、股價 ≥ {VCP_MIN_PRICE:g}）")
     d["距52週高點%"] = d["距52週高點%"].round(1)
     cols = ["代號", "名稱", "市場", "自訂板塊", "產業別", "收盤", "RS評分", "距52週高點%", "高於52週低點%",
             "距50日線%", "距200日線%", "近10日振幅%", "成交額量比(10/50日)", "50日均成交額(百萬美元)",
-            "第②階段", "近10日創高次數"]
+            "市值(億美元)", "第②階段", "近10日創高次數"]
     return d[[c for c in cols if c in d.columns]].sort_values("RS評分", ascending=False)
 
 
@@ -814,6 +826,12 @@ def main():
     full, panels = compute(piv, info, spx)
     industry = load_industry()
     full["產業別"] = full["代號"].map(industry).fillna("未分類") if industry is not None else "未分類"
+    st = load_stocks()
+    if st is not None and "shares" in st:
+        sh = pd.to_numeric(st["shares"], errors="coerce")
+        full["市值(億美元)"] = (full["代號"].map(sh) * full["收盤"] / 1e8).round(1)
+    else:
+        full["市值(億美元)"] = np.nan
 
     ind = None
     if industry is not None:
@@ -836,7 +854,7 @@ def main():
     cols = ["代號", "名稱", "市場", "產業別", "自訂板塊", "最佳板塊排名", "RS評分", "RS 5日變化",
             *PERIOD_RS, "新晉RS90", "RS≥80連續天數", "收盤", "今日漲跌%", "距52週高點%", "距50日線%",
             "今日創52週新高", "近5日創52週新高", "近10日創高次數", "RS線近5日創新高", "第②階段", "RSI14",
-            "50日均成交額(百萬美元)"]
+            "50日均成交額(百萬美元)", "市值(億美元)"]
     full = full[cols].sort_values("RS評分", ascending=False)
     vcp = vcp_prereq(full, panels, piv)
 

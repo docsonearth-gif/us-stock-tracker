@@ -125,7 +125,7 @@ def load_day(key):
 
 # ---------- 股票清單 ----------
 
-STOCK_FIELDS = ["code", "name", "exchange", "sector", "industry", "ipo_year", "source", "first_seen"]
+STOCK_FIELDS = ["code", "name", "exchange", "sector", "industry", "ipo_year", "shares", "source", "first_seen"]
 
 
 def load_stocks():

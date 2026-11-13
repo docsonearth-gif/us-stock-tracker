@@ -94,7 +94,7 @@ def run_working():
     today = date.today().isoformat()
     for k, v in syms.items():
         o = old.get(k, {})
-        v.update({"sector": o.get("sector", ""), "industry": o.get("industry", ""), "ipo_year": o.get("ipo_year", ""),
+        v.update({"sector": o.get("sector", ""), "industry": o.get("industry", ""), "ipo_year": o.get("ipo_year", ""), "shares": o.get("shares", ""),
                   "source": "eodhd", "first_seen": o.get("first_seen") or today})
     merged = {**old, **syms}
     save_stocks(merged)
