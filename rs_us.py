@@ -592,11 +592,10 @@ def market_breadth(piv, panels, idx):
 
 # ---------- 做空觀察（Notion「沽空」筆記的選股條件；只篩選，進場時機自己判斷） ----------
 
-SW_TOP_N = int(os.getenv("SHORT_TOP_N", "1000"))          # 排除小型股：50 日均成交額排名前幾名
+SW_TOP_N = int(os.getenv("SHORT_TOP_N", "1500"))          # 排除小型股：50 日均成交額排名前幾名
 SW_MIN_PRICE = float(os.getenv("SHORT_MIN_PRICE", "12"))  # 美元
 SW_LEADER_RS = int(os.getenv("SHORT_LEADER_RS", "80"))    # 過去一年 RS 曾達到
 SW_BREAK_DAYS = int(os.getenv("SHORT_BREAK_DAYS", "60"))  # 幾天內曾收在 200MA 之下
-SW_RS_DROP = int(os.getenv("SHORT_RS_DROP", "5"))         # RS 比 21 天前至少低幾分（RS 持續往下）
 
 
 def index_failed_rally(s):
@@ -664,13 +663,18 @@ def short_watch(full, panels, piv, spx):
     # 從下面反彈上來：近 15 日曾收在 200MA × 0.97 以下，近 5 日最高價又碰到 200MA × 0.98
     w["近5日反彈到200MA"] = (((ah / ma200).tail(5).max() >= 0.98)
                           & ((adj / ma200).tail(15).min() < 0.97) & (c < ma200.loc[T]))
-    w["參考止損(200MA×1.045)"] = (ma200.loc[T] * 1.045).round(2)
-    w["止損距離%"] = ((ma200.loc[T] * 1.045 / c - 1) * 100).round(1)
+    # 反彈到 50MA：股價在 50MA 之下，近 5 日最高價碰到 50MA × 0.98
+    w["近5日反彈到50MA"] = ((ah / ma50).tail(5).max() >= 0.98) & (c < ma50.loc[T])
+    w["MA200"] = ma200.loc[T]
+    w["MA50"] = ma50.loc[T]
+    w["收盤還原"] = c
     if spx is not None and spx.notna().any():
         line = adj.div(spx, axis=0)
-        w["RS線比21日前低"] = (line.loc[T] < line.shift(21).loc[T]) & (line.loc[T] < line.shift(10).loc[T])
+        # RS 線持續往下一個月：RS 線在自己的 21 日均線之下，且 21 日均線比 10 天前低（不設 RS 分數門檻）
+        lma = line.rolling(21, min_periods=15).mean()
+        w["RS線持續往下"] = (line.loc[T] < lma.loc[T]) & (lma.loc[T] < lma.shift(10).loc[T])
     else:
-        w["RS線比21日前低"] = True
+        w["RS線持續往下"] = True
     w.index.name = "代號"
 
     keep = ["代號", "名稱", "市場", "產業別", "自訂板塊", "收盤", "RS評分", "50日均成交額(百萬美元)"]
@@ -678,9 +682,10 @@ def short_watch(full, panels, piv, spx):
     cond = ((df["成交額排名"] <= SW_TOP_N) & (df["收盤"] >= SW_MIN_PRICE)
             & (df["一年RS最高"] >= SW_LEADER_RS)
             & (df["52週高點距今(天)"] >= 21)
-            & df["RS線比21日前低"] & (df["RS評分"] <= df["RS 21日前"] - SW_RS_DROP)
+            & df["RS線持續往下"]
             & df["50MA向下"]
-            & (df["近期收在200MA下天數"] >= 1))
+            # 已跌破 200MA（目前在 200MA 下）；或還在 200MA 之上但已跌破下彎的 50MA（早期）
+            & ((df["收盤還原"] < df["MA200"]) | (df["收盤還原"] < df["MA50"])))
     df = df[cond.fillna(False)].copy()
 
     earn = load_earnings()
@@ -690,36 +695,45 @@ def short_watch(full, panels, piv, spx):
     else:
         df["下次財報"], soon = "", pd.Series(False, index=df.index)
 
-    # 已站回 200MA 的不列（筆記：站上 200MA 必須離場）
-    df = df[df["距200日線%"] < 0].copy()
 
     def status(r):
+        if r["收盤還原"] >= r["MA200"]:
+            return "早期（未跌破200MA）"
         if r["近5日反彈到200MA"]:
             return "反彈到200MA附近"
+        if r["近5日反彈到50MA"]:
+            return "反彈到50MA附近"
         if r["近期收在200MA下天數"] <= 3:
             return "剛跌破200MA"
         return "在200MA之下"
     df["狀態"] = df.apply(status, axis=1)
+    # 參考止損：200MA 相關看 200MA × 1.045；反彈到 50MA、早期看 50MA × 1.045（筆記：後期入場以 50MA 當止損參考）
+    use50 = df["狀態"].isin(["反彈到50MA附近", "早期（未跌破200MA）"])
+    df["止損依據"] = np.where(use50, "50MA×1.045", "200MA×1.045")
+    df["參考止損"] = (np.where(use50, df["MA50"], df["MA200"]) * 1.045 * df["收盤"] / df["收盤還原"]).round(2)
+    df["止損距離%"] = ((np.where(use50, df["MA50"], df["MA200"]) * 1.045 / df["收盤還原"] - 1) * 100).round(1)
     notes = []
     for _, r in df.iterrows():
         n = []
         if r["狀態"] == "剛跌破200MA":
             n.append("筆記：第一次跌破不空，等反彈")
+        if r["狀態"] == "早期（未跌破200MA）":
+            n.append("筆記：未跌破200MA就空，止損難設、成功率較低")
         if r["距50日線%"] <= -15:
             n.append("已大幅延伸，勿追空")
         if r["止損距離%"] > 10:
-            n.append("離200MA太遠，止損難設")
+            n.append("離止損太遠")
         if r["200MA向下"]:
             n.append("200MA向下（中段做空）")
         notes.append("、".join(n))
     df["備註"] = notes
     sm = soon.reindex(df.index).fillna(False).astype(bool)
     df.loc[sm, "備註"] = ("⚠ 10天內財報、" + df.loc[sm, "備註"]).str.rstrip("、")
-    order = {"反彈到200MA附近": 0, "在200MA之下": 1, "剛跌破200MA": 2}
+    order = {"反彈到200MA附近": 0, "反彈到50MA附近": 1, "在200MA之下": 2, "剛跌破200MA": 3, "早期（未跌破200MA）": 4}
     df = df.sort_values(["狀態", "止損距離%"], key=lambda s: s.map(order) if s.name == "狀態" else s)
     cols = ["狀態", "代號", "名稱", "產業別", "自訂板塊", "收盤", "RS評分", "RS 21日前", "一年RS最高",
             "距200日線%", "距50日線%", "50MA<200MA", "200MA向下", "近期收在200MA下天數", "52週高點距今(天)",
-            "距52週高點%", "參考止損(200MA×1.045)", "止損距離%", "下次財報", "成交額排名", "50日均成交額(百萬美元)", "備註"]
+            "距52週高點%", "參考止損", "止損依據", "止損距離%", "下次財報", "成交額排名", "50日均成交額(百萬美元)", "備註"]
     return df[[k for k in cols if k in df.columns]]
 
 
@@ -861,7 +875,7 @@ def main():
     with open(os.path.join(DATA, "utility_note.txt"), "w", encoding="utf-8") as f:
         f.write(note)
     short = short_watch(full, panels, piv, spx)
-    short_note = (index_short_note(spx, "S&P 500") + "｜只篩選（前領導股做頭＋跌破 200MA，已站回 200MA 不列），進場時機自己判斷；"
+    short_note = (index_short_note(spx, "S&P 500") + "｜只篩選（前領導股做頭＋跌破 200MA，或未跌破 200MA 但跌破下彎 50MA＝早期），進場時機自己判斷；"
                   "回測：個股做空自動化無優勢，見 Project 反向RS做空.md")
     short.to_csv(os.path.join(DATA, "short_watch.csv"), index=False, encoding="utf-8-sig")
     write_excel(sec, cand, ind, full, latest, breadth, util, note, newhigh, vcp, short, short_note)
